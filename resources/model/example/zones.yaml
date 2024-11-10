@@ -1,0 +1,8 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "Italian Power Market Bidding Zones"
+type: "string"
+description: "Valid bidding zones for the example power market"
+enum: 
+  - "A"
+  - "B"
+  - "C"

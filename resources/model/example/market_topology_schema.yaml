@@ -1,0 +1,35 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "Market Topology Schema"
+type: "object"
+properties:
+  lines:
+    type: "array"
+    description: "List of market topology lines"
+    items:
+      type: "object"
+      properties:
+        source:
+          type: "string"
+          description: "Source zone"
+          $ref: "zones.yaml#/zones"  # Reference to external zone enum
+        destination:
+          type: "string"
+          description: "Destination zone"
+          $ref: "zones.yaml#/zones"  # Reference to external zone enum
+        ATC:
+          type: "number"
+          description: "Available Transfer Capacity for the line"
+          minimum: 0
+        market_period:
+          type: "integer"
+          description: "Applicable market period"
+          minimum: 1
+          maximum: 100
+        required:
+          - source
+          - destination
+          - ATC
+          - market_period
+    minItems: 1
+required:
+  - lines
