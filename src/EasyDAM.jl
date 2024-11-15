@@ -1,6 +1,7 @@
 module EasyDAM
 import YAML
 import StructTypes
+using DataFrames
 
 # Type declarations
 struct Line
@@ -32,6 +33,7 @@ struct BlockBid <: Bid
     type::EasyDAM.BidType
     purpose::EasyDAM.Purpose
     zone::String
+    MAR::Float64
 end
 StructTypes.StructType(::Type{BlockBid}) = StructTypes.Struct()
 
@@ -64,7 +66,7 @@ function load_lines(filepath::String)::Vector{Line}
     end
     lines_dict = YAML.load_file(filepath; dicttype=Dict{Symbol,Any})
     lines = Line[]
-    if !(:lines in key(lines_dict))
+    if !(:lines in keys(lines_dict))
         throw(BadFileError(filepath * ": this file might be ill-formed."))
     end
     for line in lines_dict[:lines]
@@ -100,7 +102,7 @@ function load_bids(filepath::String)::Vector{Bid}
     simple_bids = SimpleBid[]
     block_bids = BlockBid[]
     ids = UInt64[]
-    if !(:bids in key(bids_dict))
+    if !(:bids in keys(bids_dict))
         throw(BadFileError(filepath * ": this file might be ill-formed."))
     end
     for bid in bids_dict[:bids]
@@ -140,6 +142,61 @@ function load_bids(filepath::String)::Vector{Bid}
     end
 
     return [simple_bids; block_bids]
+end
+
+function flatten_bids(bids::Vector{Bid})::DataFrame
+    flattened_bids = DataFrame(id=UInt8[],price=Float64[],MAR=Float64[],zone=String[],profile=Vector{Float64}[])
+    for bid in bids
+        if isa(bid,SimpleBid)
+            profile = zeros(100)
+            profile[bid.market_period]=bid.quantity*(bid.purpose==EasyDAM.sell ? 1 : -1)
+            push!(flattened_bids,(id=bid.id, price=bid.price, MAR=0.0, zone=bid.zone, profile=profile))
+        end
+        if isa(bid,BlockBid)
+            profile = zeros(100)
+            for slice in bid.block
+                profile[slice.market_period]=slice.quantity*(bid.purpose==EasyDAM.sell ? 1 : -1)
+            end
+            push!(flattened_bids,(id=bid.id, price=bid.price, MAR=bid.MAR, zone=bid.zone, profile=profile))
+        end
+    end
+    return flattened_bids
+end
+
+# Market building methods
+function get_zonal_limits(lines::Vector{Line},zones::Vector{String})::DataFrame
+    #zonal_limits = DataFrame(zone=String[],export_limit=Vector{Float64}[],import_limit=Vector{Float64}[])
+    export_profiles = Vector{Float64}[]
+    import_profiles = Vector{Float64}[]
+    for zone in zones
+        export_profile = zeros(100)
+        import_profile = zeros(100)
+        for line in lines
+            if line.source == zone
+                export_profile[line.market_period] += line.ATC
+            end
+            if line.destination == zone
+                import_profile[line.market_period] -= line.ATC
+            end
+        end
+        push!(export_profiles,export_profile)
+        push!(import_profiles,import_profile)
+    end
+    return DataFrame(zone=zones,export_limit=export_profiles,import_limit=import_profiles)
+end
+
+function build_market(bids::DataFrame,lines::DataFrame)::DataFrame
+end
+
+# Home of the magical gnomes
+function solve_market(market::DataFrame)::DataFrame
+end
+
+function recover_transfers(market_results::DataFrame)::DataFrame
+end
+
+# File output
+function publish_results(market_results::DataFrame, transfers::DataFrame, filepath::String)
 end
 
 export load_lines
