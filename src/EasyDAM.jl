@@ -1,7 +1,9 @@
 module EasyDAM
 import YAML
 import StructTypes
-using DataFrames
+import DataFrames.DataFrames
+import JuMP
+import HiGHS
 
 # Type declarations
 struct Line
@@ -144,8 +146,8 @@ function load_bids(filepath::String)::Vector{Bid}
     return [simple_bids; block_bids]
 end
 
-function flatten_bids(bids::Vector{Bid})::DataFrame
-    flattened_bids = DataFrame(id=UInt8[],price=Float64[],MAR=Float64[],zone=String[],profile=Vector{Float64}[])
+function flatten_bids(bids::Vector{Bid})::DataFrames.DataFrame
+    flattened_bids = DataFrames.DataFrame(id=UInt8[],price=Float64[],MAR=Float64[],zone=String[],profile=Vector{Float64}[])
     for bid in bids
         if isa(bid,SimpleBid)
             profile = zeros(100)
@@ -164,8 +166,7 @@ function flatten_bids(bids::Vector{Bid})::DataFrame
 end
 
 # Market building methods
-function get_zonal_limits(lines::Vector{Line},zones::Vector{String})::DataFrame
-    #zonal_limits = DataFrame(zone=String[],export_limit=Vector{Float64}[],import_limit=Vector{Float64}[])
+function get_zonal_limits(lines::Vector{Line},zones::Vector{String})::DataFrames.DataFrame
     export_profiles = Vector{Float64}[]
     import_profiles = Vector{Float64}[]
     for zone in zones
@@ -182,21 +183,67 @@ function get_zonal_limits(lines::Vector{Line},zones::Vector{String})::DataFrame
         push!(export_profiles,export_profile)
         push!(import_profiles,import_profile)
     end
-    return DataFrame(zone=zones,export_limit=export_profiles,import_limit=import_profiles)
+    return DataFrames.DataFrame(zone=zones,export_limit=export_profiles,import_limit=import_profiles)
 end
 
-function build_market(bids::DataFrame,lines::DataFrame)::DataFrame
+function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFrames.DataFrame)::DataFrames.DataFrame
+    model = JuMP.Model(HiGHS.Optimizer)
+    JuMP.@variable(model, x[bids.id])
+    for bid in eachrow(bids)
+        JuMP.@constraint(model, x[bid.id] in JuMP.Semicontinuous(bid.MAR, 1.0))
+    end
+    JuMP.@variable(model, s[bids.id] >= 0)
+    bids.x = Array(x)
+    bids.s = Array(s)
+    JuMP.@variable(model, MCP_UNC[i=1:100])
+    JuMP.@variable(model, u[i=1:100,zonal_limits.zone] >=0)
+    JuMP.@variable(model, v[i=1:100,zonal_limits.zone] >=0)
+    zonal_limits.p = Array([v[1:100, zl.zone]-u[1:100, zl.zone].+MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
+    zonal_limits.u = Array([u[1:100, zl.zone] for zl in eachrow(zonal_limits)])
+    zonal_limits.v = Array([v[1:100, zl.zone] for zl in eachrow(zonal_limits)])
+    zonal_limits.MCP_UNC = Array([MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
+    market = DataFrames.leftjoin(bids,zonal_limits,on=:zone)
+    sourcing_constraint = JuMP.@constraint(model,
+        [zl in eachrow(zonal_limits)],
+        sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .<= zl.export_limit)
+    sinking_constraint = JuMP.@constraint(model,
+        [zl in eachrow(zonal_limits)],
+        sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .>= zl.import_limit)
+    grid_balance_constraint = JuMP.@constraint(model,
+        grid_balance_constraint,
+        sum(market.x .* market.profile, dims=1)[1] .== zeros(100))
+    surplus_constraint = JuMP.@constraint(model,
+        [b in eachrow(market)],
+        b.s >= sum(b.profile .* (b.p .- b.price)) 
+    )
+    JuMP.@constraint(model,
+        duality_constraint,
+        sum(market.s) == sum(sum(market.x .* market.profile .* market.price))
+                        + zonal_limits.import_limit .* zonal.limits.u
+                        - zonal_limits.export_limit .* zonal.limits.v
+                        for zl in eachrow(zonal_limits)# fix this
+    )
+
+    JuMP.@objective(model, Min, sum(sum(market.x .* market.profile .* market.price)))
+    JuMP.optimize!(model)
+    @assert JuMP.is_solved_and_feasible(model)
+    JuMP.solution_summary(model)
+    market.p = [Array(JuMP.value.(m.p)) for m in eachrow(market)]
+    market.x = [JuMP.value(m.x) for m in eachrow(market)]
+    market.s = [JuMP.value(m.s) for m in eachrow(market)]
+    return market[:, [:zone,:x,:s,:profile,:p,:price]]
+    
 end
 
 # Home of the magical gnomes
-function solve_market(market::DataFrame)::DataFrame
+function solve_market(market::DataFrames.DataFrame)::DataFrames.DataFrame
 end
 
-function recover_transfers(market_results::DataFrame)::DataFrame
+function recover_transfers(market_results::DataFrames.DataFrame)::DataFrames.DataFrame
 end
 
 # File output
-function publish_results(market_results::DataFrame, transfers::DataFrame, filepath::String)
+function publish_results(market_results::DataFrames.DataFrame, transfers::DataFrames.DataFrame, filepath::String)
 end
 
 export load_lines
