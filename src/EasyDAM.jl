@@ -186,7 +186,8 @@ function get_zonal_limits(lines::Vector{Line},zones::Vector{String})::DataFrames
     return DataFrames.DataFrame(zone=zones,export_limit=export_profiles,import_limit=import_profiles)
 end
 
-function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFrames.DataFrame)::DataFrames.DataFrame
+# Home of the magical gnomes
+function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFrames.DataFrame)
     model = JuMP.Model(HiGHS.Optimizer)
     JuMP.@variable(model, x[bids.id])
     for bid in eachrow(bids)
@@ -198,7 +199,8 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
     JuMP.@variable(model, MCP_UNC[i=1:100])
     JuMP.@variable(model, u[i=1:100,zonal_limits.zone] >=0)
     JuMP.@variable(model, v[i=1:100,zonal_limits.zone] >=0)
-    zonal_limits.p = Array([v[1:100, zl.zone]-u[1:100, zl.zone].+MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
+    zonal_limits.p = Array([v[1:100, zl.zone].-u[1:100, zl.zone].+MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
+    zonal_limits.cc = Array([v[1:100, zl.zone].-u[1:100, zl.zone] for zl in eachrow(zonal_limits)])
     zonal_limits.u = Array([u[1:100, zl.zone] for zl in eachrow(zonal_limits)])
     zonal_limits.v = Array([v[1:100, zl.zone] for zl in eachrow(zonal_limits)])
     zonal_limits.MCP_UNC = Array([MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
@@ -214,14 +216,13 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
         sum(market.x .* market.profile, dims=1)[1] .== zeros(100))
     surplus_constraint = JuMP.@constraint(model,
         [b in eachrow(market)],
-        b.s >= sum(b.profile .* (b.p .- b.price)) 
+        b.s >= sum(b.profile .* (b.p .- b.price))
     )
     JuMP.@constraint(model,
         duality_constraint,
-        sum(market.s) == sum(sum(market.x .* market.profile .* market.price))
-                        + zonal_limits.import_limit .* zonal.limits.u
-                        - zonal_limits.export_limit .* zonal.limits.v
-                        for zl in eachrow(zonal_limits)# fix this
+        sum(market.s) == sum([sum(m.x .* m.profile .* m.price) for m in eachrow(market)]) 
+                        - sum([sum(zl.import_limit .* zl.u) for zl in eachrow(zonal_limits)])
+                        + sum([sum(zl.import_limit .* zl.v) for zl in eachrow(zonal_limits)])
     )
 
     JuMP.@objective(model, Min, sum(sum(market.x .* market.profile .* market.price)))
@@ -231,12 +232,11 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
     market.p = [Array(JuMP.value.(m.p)) for m in eachrow(market)]
     market.x = [JuMP.value(m.x) for m in eachrow(market)]
     market.s = [JuMP.value(m.s) for m in eachrow(market)]
-    return market[:, [:zone,:x,:s,:profile,:p,:price]]
+    zonal_limits.p = [Array(JuMP.value.(zl.p)) for zl in eachrow(zonal_limits)]
+    zonal_limits.cc = [Array(JuMP.value.(zl.cc)) for zl in eachrow(zonal_limits)]
+    zonal_limits.MCP_UNC = [Array(JuMP.value.(zl.MCP_UNC)) for zl in eachrow(zonal_limits)]
+    return (zonal_limits[:, [:zone,:MCP_UNC,:cc,:p]],market[:, [:zone,:profile,:price,:x,:p]])
     
-end
-
-# Home of the magical gnomes
-function solve_market(market::DataFrames.DataFrame)::DataFrames.DataFrame
 end
 
 function recover_transfers(market_results::DataFrames.DataFrame)::DataFrames.DataFrame

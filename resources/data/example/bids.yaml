@@ -8,7 +8,7 @@ bids:
     price: 100
     type: "block"
     purpose: "buy"
-    MAR: 0.0
+    MAR: 0.9
     zone: "A"
   - id: 2
     market_period: 1
@@ -23,25 +23,32 @@ bids:
     quantity: 200
     type: "simple"
     purpose: "sell"
-    zone: "A"
+    zone: "C"
   - id: 4
     market_period: 2
-    price: 2000
+    price: 80
     quantity: 200
     type: "simple"
     purpose: "sell"
     zone: "B"
   - id: 5
     market_period: 2
-    price: 2000
-    quantity: 200
+    price: 77
+    quantity: 5
     type: "simple"
     purpose: "sell"
     zone: "C"
   - id: 6
     market_period: 2
-    price: 1
+    price: 120
     quantity: 30
     type: "simple"
     purpose: "buy"
     zone: "C"
+  - id: 7
+    market_period: 1
+    price: 0
+    quantity: 30
+    type: "simple"
+    purpose: "sell"
+    zone: "A"
