@@ -147,7 +147,7 @@ function load_bids(filepath::String)::Vector{Bid}
 end
 
 function flatten_bids(bids::Vector{Bid})::DataFrames.DataFrame
-    flattened_bids = DataFrames.DataFrame(id=UInt8[],price=Float64[],MAR=Float64[],zone=String[],profile=Vector{Float64}[])
+    flattened_bids = DataFrames.DataFrame(id=UInt64[],price=Float64[],MAR=Float64[],zone=String[],profile=Vector{Float64}[])
     for bid in bids
         if isa(bid,SimpleBid)
             profile = zeros(100)
@@ -204,12 +204,14 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
     zonal_limits.u = Array([u[1:100, zl.zone] for zl in eachrow(zonal_limits)])
     zonal_limits.v = Array([v[1:100, zl.zone] for zl in eachrow(zonal_limits)])
     zonal_limits.MCP_UNC = Array([MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
+    zonal_limits2 = zonal_limits
+    filter!(zl -> zl.zone in bids.zone, zonal_limits2)
     market = DataFrames.leftjoin(bids,zonal_limits,on=:zone)
     sourcing_constraint = JuMP.@constraint(model,
-        [zl in eachrow(zonal_limits)],
+        [zl in eachrow(zonal_limits2)],
         sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .<= zl.export_limit)
     sinking_constraint = JuMP.@constraint(model,
-        [zl in eachrow(zonal_limits)],
+        [zl in eachrow(zonal_limits2)],
         sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .>= zl.import_limit)
     grid_balance_constraint = JuMP.@constraint(model,
         grid_balance_constraint,
@@ -222,10 +224,10 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
         duality_constraint,
         sum(market.s) == sum([sum(m.x .* m.profile .* m.price) for m in eachrow(market)]) 
                         - sum([sum(zl.import_limit .* zl.u) for zl in eachrow(zonal_limits)])
-                        + sum([sum(zl.import_limit .* zl.v) for zl in eachrow(zonal_limits)])
+                        + sum([sum(zl.export_limit .* zl.v) for zl in eachrow(zonal_limits)])
     )
 
-    JuMP.@objective(model, Min, sum(sum(market.x .* market.profile .* market.price)))
+    JuMP.@objective(model, Max, -sum(sum(market.x .* market.profile .* market.price)))
     JuMP.optimize!(model)
     @assert JuMP.is_solved_and_feasible(model)
     JuMP.solution_summary(model)
@@ -235,7 +237,7 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
     zonal_limits.p = [Array(JuMP.value.(zl.p)) for zl in eachrow(zonal_limits)]
     zonal_limits.cc = [Array(JuMP.value.(zl.cc)) for zl in eachrow(zonal_limits)]
     zonal_limits.MCP_UNC = [Array(JuMP.value.(zl.MCP_UNC)) for zl in eachrow(zonal_limits)]
-    return (zonal_limits[:, [:zone,:MCP_UNC,:cc,:p]],market[:, [:zone,:profile,:price,:x,:p]])
+    return (zonal_limits[:, [:zone,:MCP_UNC,:cc,:p]],market[:, [:zone,:profile,:price,:x,:p,:s]])
     
 end
 

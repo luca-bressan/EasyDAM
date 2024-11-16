@@ -1,0 +1,4033 @@
+lines:
+  - market_period: 1
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 2
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 3
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 4
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 5
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 6
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 7
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 8
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 9
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 10
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 11
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 12
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 13
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 14
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 15
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 16
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 17
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 18
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 19
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 20
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 21
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 22
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 23
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 24
+    source: AUST
+    destination: NORD
+    ATC: 10000
+  - market_period: 1
+    source: BSP
+    destination: COUP
+    ATC: 59.2
+  - market_period: 2
+    source: BSP
+    destination: COUP
+    ATC: 0
+  - market_period: 3
+    source: BSP
+    destination: COUP
+    ATC: 0
+  - market_period: 4
+    source: BSP
+    destination: COUP
+    ATC: 0
+  - market_period: 5
+    source: BSP
+    destination: COUP
+    ATC: 0
+  - market_period: 6
+    source: BSP
+    destination: COUP
+    ATC: 0
+  - market_period: 7
+    source: BSP
+    destination: COUP
+    ATC: 1139
+  - market_period: 8
+    source: BSP
+    destination: COUP
+    ATC: 1005
+  - market_period: 9
+    source: BSP
+    destination: COUP
+    ATC: 0
+  - market_period: 10
+    source: BSP
+    destination: COUP
+    ATC: 27.6
+  - market_period: 11
+    source: BSP
+    destination: COUP
+    ATC: 99.4
+  - market_period: 12
+    source: BSP
+    destination: COUP
+    ATC: 633
+  - market_period: 13
+    source: BSP
+    destination: COUP
+    ATC: 982.8
+  - market_period: 14
+    source: BSP
+    destination: COUP
+    ATC: 1154
+  - market_period: 15
+    source: BSP
+    destination: COUP
+    ATC: 976.6
+  - market_period: 16
+    source: BSP
+    destination: COUP
+    ATC: 509
+  - market_period: 17
+    source: BSP
+    destination: COUP
+    ATC: 486.6
+  - market_period: 18
+    source: BSP
+    destination: COUP
+    ATC: 617.1
+  - market_period: 19
+    source: BSP
+    destination: COUP
+    ATC: 1154
+  - market_period: 20
+    source: BSP
+    destination: COUP
+    ATC: 1154
+  - market_period: 21
+    source: BSP
+    destination: COUP
+    ATC: 1154
+  - market_period: 22
+    source: BSP
+    destination: COUP
+    ATC: 1154
+  - market_period: 23
+    source: BSP
+    destination: COUP
+    ATC: 1154
+  - market_period: 24
+    source: BSP
+    destination: COUP
+    ATC: 901.9
+  - market_period: 1
+    source: CALA
+    destination: SICI
+    ATC: 683.62
+  - market_period: 2
+    source: CALA
+    destination: SICI
+    ATC: 289.48
+  - market_period: 3
+    source: CALA
+    destination: SICI
+    ATC: 76.63
+  - market_period: 4
+    source: CALA
+    destination: SICI
+    ATC: 186.52
+  - market_period: 5
+    source: CALA
+    destination: SICI
+    ATC: 239.08
+  - market_period: 6
+    source: CALA
+    destination: SICI
+    ATC: 259.07
+  - market_period: 7
+    source: CALA
+    destination: SICI
+    ATC: 908.63
+  - market_period: 8
+    source: CALA
+    destination: SICI
+    ATC: 880.13
+  - market_period: 9
+    source: CALA
+    destination: SICI
+    ATC: 327.08
+  - market_period: 10
+    source: CALA
+    destination: SICI
+    ATC: 0
+  - market_period: 11
+    source: CALA
+    destination: SICI
+    ATC: 0
+  - market_period: 12
+    source: CALA
+    destination: SICI
+    ATC: 0
+  - market_period: 13
+    source: CALA
+    destination: SICI
+    ATC: 0
+  - market_period: 14
+    source: CALA
+    destination: SICI
+    ATC: 319.33
+  - market_period: 15
+    source: CALA
+    destination: SICI
+    ATC: 374.29
+  - market_period: 16
+    source: CALA
+    destination: SICI
+    ATC: 329.05
+  - market_period: 17
+    source: CALA
+    destination: SICI
+    ATC: 672.72
+  - market_period: 18
+    source: CALA
+    destination: SICI
+    ATC: 807.58
+  - market_period: 19
+    source: CALA
+    destination: SICI
+    ATC: 778.49
+  - market_period: 20
+    source: CALA
+    destination: SICI
+    ATC: 712.31
+  - market_period: 21
+    source: CALA
+    destination: SICI
+    ATC: 590.51
+  - market_period: 22
+    source: CALA
+    destination: SICI
+    ATC: 662.76
+  - market_period: 23
+    source: CALA
+    destination: SICI
+    ATC: 439.25
+  - market_period: 24
+    source: CALA
+    destination: SICI
+    ATC: 561.95
+  - market_period: 1
+    source: CALA
+    destination: SUD
+    ATC: 1223.91
+  - market_period: 2
+    source: CALA
+    destination: SUD
+    ATC: 1738.37
+  - market_period: 3
+    source: CALA
+    destination: SUD
+    ATC: 2123.21
+  - market_period: 4
+    source: CALA
+    destination: SUD
+    ATC: 2861.17
+  - market_period: 5
+    source: CALA
+    destination: SUD
+    ATC: 2425.28
+  - market_period: 6
+    source: CALA
+    destination: SUD
+    ATC: 2379.61
+  - market_period: 7
+    source: CALA
+    destination: SUD
+    ATC: 1216.26
+  - market_period: 8
+    source: CALA
+    destination: SUD
+    ATC: 1219.57
+  - market_period: 9
+    source: CALA
+    destination: SUD
+    ATC: 1834.97
+  - market_period: 10
+    source: CALA
+    destination: SUD
+    ATC: 1829.09
+  - market_period: 11
+    source: CALA
+    destination: SUD
+    ATC: 2285.23
+  - market_period: 12
+    source: CALA
+    destination: SUD
+    ATC: 2271.55
+  - market_period: 13
+    source: CALA
+    destination: SUD
+    ATC: 2296.84
+  - market_period: 14
+    source: CALA
+    destination: SUD
+    ATC: 2713.05
+  - market_period: 15
+    source: CALA
+    destination: SUD
+    ATC: 2334.88
+  - market_period: 16
+    source: CALA
+    destination: SUD
+    ATC: 2165.55
+  - market_period: 17
+    source: CALA
+    destination: SUD
+    ATC: 1290.68
+  - market_period: 18
+    source: CALA
+    destination: SUD
+    ATC: 1159.01
+  - market_period: 19
+    source: CALA
+    destination: SUD
+    ATC: 951.14
+  - market_period: 20
+    source: CALA
+    destination: SUD
+    ATC: 730.54
+  - market_period: 21
+    source: CALA
+    destination: SUD
+    ATC: 822.37
+  - market_period: 22
+    source: CALA
+    destination: SUD
+    ATC: 783.62
+  - market_period: 23
+    source: CALA
+    destination: SUD
+    ATC: 903.18
+  - market_period: 24
+    source: CALA
+    destination: SUD
+    ATC: 1082.72
+  - market_period: 1
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 2
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 3
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 4
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 5
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 6
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 7
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 8
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 9
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 10
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 11
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 12
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 13
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 14
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 15
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 16
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 17
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 18
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 19
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 20
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 21
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 22
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 23
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 24
+    source: CNOR
+    destination: CORS
+    ATC: 150
+  - market_period: 1
+    source: CNOR
+    destination: CSUD
+    ATC: 380.88
+  - market_period: 2
+    source: CNOR
+    destination: CSUD
+    ATC: 458.39
+  - market_period: 3
+    source: CNOR
+    destination: CSUD
+    ATC: 411.34
+  - market_period: 4
+    source: CNOR
+    destination: CSUD
+    ATC: 828.08
+  - market_period: 5
+    source: CNOR
+    destination: CSUD
+    ATC: 1120.4
+  - market_period: 6
+    source: CNOR
+    destination: CSUD
+    ATC: 1044.99
+  - market_period: 7
+    source: CNOR
+    destination: CSUD
+    ATC: 1289.54
+  - market_period: 8
+    source: CNOR
+    destination: CSUD
+    ATC: 1827
+  - market_period: 9
+    source: CNOR
+    destination: CSUD
+    ATC: 1673.21
+  - market_period: 10
+    source: CNOR
+    destination: CSUD
+    ATC: 1499.37
+  - market_period: 11
+    source: CNOR
+    destination: CSUD
+    ATC: 1110.66
+  - market_period: 12
+    source: CNOR
+    destination: CSUD
+    ATC: 1315.73
+  - market_period: 13
+    source: CNOR
+    destination: CSUD
+    ATC: 1199.66
+  - market_period: 14
+    source: CNOR
+    destination: CSUD
+    ATC: 1064.7
+  - market_period: 15
+    source: CNOR
+    destination: CSUD
+    ATC: 1400.12
+  - market_period: 16
+    source: CNOR
+    destination: CSUD
+    ATC: 650.59
+  - market_period: 17
+    source: CNOR
+    destination: CSUD
+    ATC: 765.9
+  - market_period: 18
+    source: CNOR
+    destination: CSUD
+    ATC: 836.31
+  - market_period: 19
+    source: CNOR
+    destination: CSUD
+    ATC: 1282.36
+  - market_period: 20
+    source: CNOR
+    destination: CSUD
+    ATC: 1540.38
+  - market_period: 21
+    source: CNOR
+    destination: CSUD
+    ATC: 1482.31
+  - market_period: 22
+    source: CNOR
+    destination: CSUD
+    ATC: 1024.02
+  - market_period: 23
+    source: CNOR
+    destination: CSUD
+    ATC: 895.87
+  - market_period: 24
+    source: CNOR
+    destination: CSUD
+    ATC: 664.98
+  - market_period: 1
+    source: CNOR
+    destination: NORD
+    ATC: 6610
+  - market_period: 2
+    source: CNOR
+    destination: NORD
+    ATC: 6227
+  - market_period: 3
+    source: CNOR
+    destination: NORD
+    ATC: 6327
+  - market_period: 4
+    source: CNOR
+    destination: NORD
+    ATC: 6121
+  - market_period: 5
+    source: CNOR
+    destination: NORD
+    ATC: 5808.86
+  - market_period: 6
+    source: CNOR
+    destination: NORD
+    ATC: 5947.17
+  - market_period: 7
+    source: CNOR
+    destination: NORD
+    ATC: 5403.39
+  - market_period: 8
+    source: CNOR
+    destination: NORD
+    ATC: 4978.63
+  - market_period: 9
+    source: CNOR
+    destination: NORD
+    ATC: 5229.71
+  - market_period: 10
+    source: CNOR
+    destination: NORD
+    ATC: 5587.02
+  - market_period: 11
+    source: CNOR
+    destination: NORD
+    ATC: 6256
+  - market_period: 12
+    source: CNOR
+    destination: NORD
+    ATC: 6036.17
+  - market_period: 13
+    source: CNOR
+    destination: NORD
+    ATC: 6142.08
+  - market_period: 14
+    source: CNOR
+    destination: NORD
+    ATC: 6220
+  - market_period: 15
+    source: CNOR
+    destination: NORD
+    ATC: 5655.62
+  - market_period: 16
+    source: CNOR
+    destination: NORD
+    ATC: 6515.49
+  - market_period: 17
+    source: CNOR
+    destination: NORD
+    ATC: 6628
+  - market_period: 18
+    source: CNOR
+    destination: NORD
+    ATC: 6628
+  - market_period: 19
+    source: CNOR
+    destination: NORD
+    ATC: 5877
+  - market_period: 20
+    source: CNOR
+    destination: NORD
+    ATC: 5877
+  - market_period: 21
+    source: CNOR
+    destination: NORD
+    ATC: 5877
+  - market_period: 22
+    source: CNOR
+    destination: NORD
+    ATC: 6480
+  - market_period: 23
+    source: CNOR
+    destination: NORD
+    ATC: 6580
+  - market_period: 24
+    source: CNOR
+    destination: NORD
+    ATC: 6580
+  - market_period: 1
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 2
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 3
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 4
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 5
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 6
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 7
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 8
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 9
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 10
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 11
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 12
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 13
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 14
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 15
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 16
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 17
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 18
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 19
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 20
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 21
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 22
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 23
+    source: COAC
+    destination: SARD
+    ATC: 20
+  - market_period: 24
+    source: COAC
+    destination: SARD
+    ATC: 15
+  - market_period: 1
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 2
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 3
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 4
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 5
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 6
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 7
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 8
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 9
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 10
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 11
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 12
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 13
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 14
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 15
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 16
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 17
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 18
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 19
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 20
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 21
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 22
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 23
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 24
+    source: CORS
+    destination: CNOR
+    ATC: 150
+  - market_period: 1
+    source: CORS
+    destination: SARD
+    ATC: 184
+  - market_period: 2
+    source: CORS
+    destination: SARD
+    ATC: 179
+  - market_period: 3
+    source: CORS
+    destination: SARD
+    ATC: 176
+  - market_period: 4
+    source: CORS
+    destination: SARD
+    ATC: 175
+  - market_period: 5
+    source: CORS
+    destination: SARD
+    ATC: 174
+  - market_period: 6
+    source: CORS
+    destination: SARD
+    ATC: 175
+  - market_period: 7
+    source: CORS
+    destination: SARD
+    ATC: 175
+  - market_period: 8
+    source: CORS
+    destination: SARD
+    ATC: 178
+  - market_period: 9
+    source: CORS
+    destination: SARD
+    ATC: 183
+  - market_period: 10
+    source: CORS
+    destination: SARD
+    ATC: 188
+  - market_period: 11
+    source: CORS
+    destination: SARD
+    ATC: 191
+  - market_period: 12
+    source: CORS
+    destination: SARD
+    ATC: 192
+  - market_period: 13
+    source: CORS
+    destination: SARD
+    ATC: 193
+  - market_period: 14
+    source: CORS
+    destination: SARD
+    ATC: 193
+  - market_period: 15
+    source: CORS
+    destination: SARD
+    ATC: 192
+  - market_period: 16
+    source: CORS
+    destination: SARD
+    ATC: 191
+  - market_period: 17
+    source: CORS
+    destination: SARD
+    ATC: 190
+  - market_period: 18
+    source: CORS
+    destination: SARD
+    ATC: 190
+  - market_period: 19
+    source: CORS
+    destination: SARD
+    ATC: 192
+  - market_period: 20
+    source: CORS
+    destination: SARD
+    ATC: 194
+  - market_period: 21
+    source: CORS
+    destination: SARD
+    ATC: 194
+  - market_period: 22
+    source: CORS
+    destination: SARD
+    ATC: 192
+  - market_period: 23
+    source: CORS
+    destination: SARD
+    ATC: 191
+  - market_period: 24
+    source: CORS
+    destination: SARD
+    ATC: 189
+  - market_period: 1
+    source: COUP
+    destination: BSP
+    ATC: 1079.8
+  - market_period: 2
+    source: COUP
+    destination: BSP
+    ATC: 1139
+  - market_period: 3
+    source: COUP
+    destination: BSP
+    ATC: 1139
+  - market_period: 4
+    source: COUP
+    destination: BSP
+    ATC: 1139
+  - market_period: 5
+    source: COUP
+    destination: BSP
+    ATC: 1139
+  - market_period: 6
+    source: COUP
+    destination: BSP
+    ATC: 1139
+  - market_period: 7
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 8
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 9
+    source: COUP
+    destination: BSP
+    ATC: 1005
+  - market_period: 10
+    source: COUP
+    destination: BSP
+    ATC: 1124.4
+  - market_period: 11
+    source: COUP
+    destination: BSP
+    ATC: 1054.6
+  - market_period: 12
+    source: COUP
+    destination: BSP
+    ATC: 521
+  - market_period: 13
+    source: COUP
+    destination: BSP
+    ATC: 171.2
+  - market_period: 14
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 15
+    source: COUP
+    destination: BSP
+    ATC: 177.4
+  - market_period: 16
+    source: COUP
+    destination: BSP
+    ATC: 645
+  - market_period: 17
+    source: COUP
+    destination: BSP
+    ATC: 667.4
+  - market_period: 18
+    source: COUP
+    destination: BSP
+    ATC: 536.9
+  - market_period: 19
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 20
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 21
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 22
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 23
+    source: COUP
+    destination: BSP
+    ATC: 0
+  - market_period: 24
+    source: COUP
+    destination: BSP
+    ATC: 237.1
+  - market_period: 1
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 2
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 3
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 4
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 5
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 6
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 7
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 8
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 9
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 10
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 11
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 12
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 13
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 14
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 15
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 16
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 17
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 18
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 19
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 20
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 21
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 22
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 23
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 24
+    source: COUP
+    destination: NORD
+    ATC: 30000
+  - market_period: 1
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 2
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 3
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 4
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 5
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 6
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 7
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 8
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 9
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 10
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 11
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 12
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 13
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 14
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 15
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 16
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 17
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 18
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 19
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 20
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 21
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 22
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 23
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 24
+    source: COUP
+    destination: XAUS
+    ATC: 0
+  - market_period: 1
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 2
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 3
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 4
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 5
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 6
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 7
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 8
+    source: COUP
+    destination: XFRA
+    ATC: 5133
+  - market_period: 9
+    source: COUP
+    destination: XFRA
+    ATC: 5133
+  - market_period: 10
+    source: COUP
+    destination: XFRA
+    ATC: 5906
+  - market_period: 11
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 12
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 13
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 14
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 15
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 16
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 17
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 18
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 19
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 20
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 21
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 22
+    source: COUP
+    destination: XFRA
+    ATC: 5914
+  - market_period: 23
+    source: COUP
+    destination: XFRA
+    ATC: 4137
+  - market_period: 24
+    source: COUP
+    destination: XFRA
+    ATC: 5872
+  - market_period: 1
+    source: CSUD
+    destination: CNOR
+    ATC: 5838.12
+  - market_period: 2
+    source: CSUD
+    destination: CNOR
+    ATC: 5860.61
+  - market_period: 3
+    source: CSUD
+    destination: CNOR
+    ATC: 6007.66
+  - market_period: 4
+    source: CSUD
+    destination: CNOR
+    ATC: 5773.92
+  - market_period: 5
+    source: CSUD
+    destination: CNOR
+    ATC: 5481.6
+  - market_period: 6
+    source: CSUD
+    destination: CNOR
+    ATC: 5557.01
+  - market_period: 7
+    source: CSUD
+    destination: CNOR
+    ATC: 4843.46
+  - market_period: 8
+    source: CSUD
+    destination: CNOR
+    ATC: 4306
+  - market_period: 9
+    source: CSUD
+    destination: CNOR
+    ATC: 4359.79
+  - market_period: 10
+    source: CSUD
+    destination: CNOR
+    ATC: 4559.63
+  - market_period: 11
+    source: CSUD
+    destination: CNOR
+    ATC: 4948.34
+  - market_period: 12
+    source: CSUD
+    destination: CNOR
+    ATC: 4743.27
+  - market_period: 13
+    source: CSUD
+    destination: CNOR
+    ATC: 5039.34
+  - market_period: 14
+    source: CSUD
+    destination: CNOR
+    ATC: 5174.3
+  - market_period: 15
+    source: CSUD
+    destination: CNOR
+    ATC: 4838.88
+  - market_period: 16
+    source: CSUD
+    destination: CNOR
+    ATC: 5654.41
+  - market_period: 17
+    source: CSUD
+    destination: CNOR
+    ATC: 5539.1
+  - market_period: 18
+    source: CSUD
+    destination: CNOR
+    ATC: 5468.69
+  - market_period: 19
+    source: CSUD
+    destination: CNOR
+    ATC: 4234.64
+  - market_period: 20
+    source: CSUD
+    destination: CNOR
+    ATC: 3976.62
+  - market_period: 21
+    source: CSUD
+    destination: CNOR
+    ATC: 4034.69
+  - market_period: 22
+    source: CSUD
+    destination: CNOR
+    ATC: 4560.98
+  - market_period: 23
+    source: CSUD
+    destination: CNOR
+    ATC: 4689.13
+  - market_period: 24
+    source: CSUD
+    destination: CNOR
+    ATC: 4920.02
+  - market_period: 1
+    source: CSUD
+    destination: MONT
+    ATC: 9826
+  - market_period: 2
+    source: CSUD
+    destination: MONT
+    ATC: 9831
+  - market_period: 3
+    source: CSUD
+    destination: MONT
+    ATC: 10042
+  - market_period: 4
+    source: CSUD
+    destination: MONT
+    ATC: 10167
+  - market_period: 5
+    source: CSUD
+    destination: MONT
+    ATC: 10159
+  - market_period: 6
+    source: CSUD
+    destination: MONT
+    ATC: 10086
+  - market_period: 7
+    source: CSUD
+    destination: MONT
+    ATC: 9725
+  - market_period: 8
+    source: CSUD
+    destination: MONT
+    ATC: 9771
+  - market_period: 9
+    source: CSUD
+    destination: MONT
+    ATC: 10066
+  - market_period: 10
+    source: CSUD
+    destination: MONT
+    ATC: 10317
+  - market_period: 11
+    source: CSUD
+    destination: MONT
+    ATC: 10343
+  - market_period: 12
+    source: CSUD
+    destination: MONT
+    ATC: 10310
+  - market_period: 13
+    source: CSUD
+    destination: MONT
+    ATC: 10322
+  - market_period: 14
+    source: CSUD
+    destination: MONT
+    ATC: 10279
+  - market_period: 15
+    source: CSUD
+    destination: MONT
+    ATC: 10281
+  - market_period: 16
+    source: CSUD
+    destination: MONT
+    ATC: 10050
+  - market_period: 17
+    source: CSUD
+    destination: MONT
+    ATC: 9816
+  - market_period: 18
+    source: CSUD
+    destination: MONT
+    ATC: 9510
+  - market_period: 19
+    source: CSUD
+    destination: MONT
+    ATC: 9510.97
+  - market_period: 20
+    source: CSUD
+    destination: MONT
+    ATC: 9455
+  - market_period: 21
+    source: CSUD
+    destination: MONT
+    ATC: 9465
+  - market_period: 22
+    source: CSUD
+    destination: MONT
+    ATC: 9448
+  - market_period: 23
+    source: CSUD
+    destination: MONT
+    ATC: 9574.9
+  - market_period: 24
+    source: CSUD
+    destination: MONT
+    ATC: 9664
+  - market_period: 1
+    source: CSUD
+    destination: SARD
+    ATC: 612.67
+  - market_period: 2
+    source: CSUD
+    destination: SARD
+    ATC: 679.58
+  - market_period: 3
+    source: CSUD
+    destination: SARD
+    ATC: 725.72
+  - market_period: 4
+    source: CSUD
+    destination: SARD
+    ATC: 750.01
+  - market_period: 5
+    source: CSUD
+    destination: SARD
+    ATC: 756.84
+  - market_period: 6
+    source: CSUD
+    destination: SARD
+    ATC: 759.93
+  - market_period: 7
+    source: CSUD
+    destination: SARD
+    ATC: 757.95
+  - market_period: 8
+    source: CSUD
+    destination: SARD
+    ATC: 764.05
+  - market_period: 9
+    source: CSUD
+    destination: SARD
+    ATC: 830.4
+  - market_period: 10
+    source: CSUD
+    destination: SARD
+    ATC: 927.63
+  - market_period: 11
+    source: CSUD
+    destination: SARD
+    ATC: 1018.98
+  - market_period: 12
+    source: CSUD
+    destination: SARD
+    ATC: 1095.08
+  - market_period: 13
+    source: CSUD
+    destination: SARD
+    ATC: 1145.82
+  - market_period: 14
+    source: CSUD
+    destination: SARD
+    ATC: 1248.87
+  - market_period: 15
+    source: CSUD
+    destination: SARD
+    ATC: 1332.42
+  - market_period: 16
+    source: CSUD
+    destination: SARD
+    ATC: 1344.94
+  - market_period: 17
+    source: CSUD
+    destination: SARD
+    ATC: 1316.07
+  - market_period: 18
+    source: CSUD
+    destination: SARD
+    ATC: 1161.74
+  - market_period: 19
+    source: CSUD
+    destination: SARD
+    ATC: 1229.79
+  - market_period: 20
+    source: CSUD
+    destination: SARD
+    ATC: 920.64
+  - market_period: 21
+    source: CSUD
+    destination: SARD
+    ATC: 996
+  - market_period: 22
+    source: CSUD
+    destination: SARD
+    ATC: 712.76
+  - market_period: 23
+    source: CSUD
+    destination: SARD
+    ATC: 600.87
+  - market_period: 24
+    source: CSUD
+    destination: SARD
+    ATC: 517.77
+  - market_period: 1
+    source: CSUD
+    destination: SUD
+    ATC: 3594.85
+  - market_period: 2
+    source: CSUD
+    destination: SUD
+    ATC: 3124.73
+  - market_period: 3
+    source: CSUD
+    destination: SUD
+    ATC: 2994.75
+  - market_period: 4
+    source: CSUD
+    destination: SUD
+    ATC: 3429.61
+  - market_period: 5
+    source: CSUD
+    destination: SUD
+    ATC: 3813.07
+  - market_period: 6
+    source: CSUD
+    destination: SUD
+    ATC: 3872.54
+  - market_period: 7
+    source: CSUD
+    destination: SUD
+    ATC: 4488.77
+  - market_period: 8
+    source: CSUD
+    destination: SUD
+    ATC: 5010.31
+  - market_period: 9
+    source: CSUD
+    destination: SUD
+    ATC: 5076.39
+  - market_period: 10
+    source: CSUD
+    destination: SUD
+    ATC: 5163.83
+  - market_period: 11
+    source: CSUD
+    destination: SUD
+    ATC: 4660.7
+  - market_period: 12
+    source: CSUD
+    destination: SUD
+    ATC: 4871.35
+  - market_period: 13
+    source: CSUD
+    destination: SUD
+    ATC: 4416.06
+  - market_period: 14
+    source: CSUD
+    destination: SUD
+    ATC: 4014.57
+  - market_period: 15
+    source: CSUD
+    destination: SUD
+    ATC: 4508.93
+  - market_period: 16
+    source: CSUD
+    destination: SUD
+    ATC: 4285.48
+  - market_period: 17
+    source: CSUD
+    destination: SUD
+    ATC: 4367.56
+  - market_period: 18
+    source: CSUD
+    destination: SUD
+    ATC: 4748.19
+  - market_period: 19
+    source: CSUD
+    destination: SUD
+    ATC: 4470.42
+  - market_period: 20
+    source: CSUD
+    destination: SUD
+    ATC: 4378.53
+  - market_period: 21
+    source: CSUD
+    destination: SUD
+    ATC: 3999.14
+  - market_period: 22
+    source: CSUD
+    destination: SUD
+    ATC: 4110.49
+  - market_period: 23
+    source: CSUD
+    destination: SUD
+    ATC: 4180.17
+  - market_period: 24
+    source: CSUD
+    destination: SUD
+    ATC: 4073.42
+  - market_period: 1
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 2
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 3
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 4
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 5
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 6
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 7
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 8
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 9
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 10
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 11
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 12
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 13
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 14
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 15
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 16
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 17
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 18
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 19
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 20
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 21
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 22
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 23
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 24
+    source: FRAN
+    destination: NORD
+    ATC: 10000
+  - market_period: 1
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 2
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 3
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 4
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 5
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 6
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 7
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 8
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 9
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 10
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 11
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 12
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 13
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 14
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 15
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 16
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 17
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 18
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 19
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 20
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 21
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 22
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 23
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 24
+    source: GREC
+    destination: SUD
+    ATC: 10000
+  - market_period: 1
+    source: MALT
+    destination: SICI
+    ATC: 351
+  - market_period: 2
+    source: MALT
+    destination: SICI
+    ATC: 421
+  - market_period: 3
+    source: MALT
+    destination: SICI
+    ATC: 400
+  - market_period: 4
+    source: MALT
+    destination: SICI
+    ATC: 387
+  - market_period: 5
+    source: MALT
+    destination: SICI
+    ATC: 401
+  - market_period: 6
+    source: MALT
+    destination: SICI
+    ATC: 402
+  - market_period: 7
+    source: MALT
+    destination: SICI
+    ATC: 398
+  - market_period: 8
+    source: MALT
+    destination: SICI
+    ATC: 386
+  - market_period: 9
+    source: MALT
+    destination: SICI
+    ATC: 450
+  - market_period: 10
+    source: MALT
+    destination: SICI
+    ATC: 363
+  - market_period: 11
+    source: MALT
+    destination: SICI
+    ATC: 355
+  - market_period: 12
+    source: MALT
+    destination: SICI
+    ATC: 353
+  - market_period: 13
+    source: MALT
+    destination: SICI
+    ATC: 348
+  - market_period: 14
+    source: MALT
+    destination: SICI
+    ATC: 407
+  - market_period: 15
+    source: MALT
+    destination: SICI
+    ATC: 450
+  - market_period: 16
+    source: MALT
+    destination: SICI
+    ATC: 450
+  - market_period: 17
+    source: MALT
+    destination: SICI
+    ATC: 450
+  - market_period: 18
+    source: MALT
+    destination: SICI
+    ATC: 441
+  - market_period: 19
+    source: MALT
+    destination: SICI
+    ATC: 448
+  - market_period: 20
+    source: MALT
+    destination: SICI
+    ATC: 450
+  - market_period: 21
+    source: MALT
+    destination: SICI
+    ATC: 450
+  - market_period: 22
+    source: MALT
+    destination: SICI
+    ATC: 450
+  - market_period: 23
+    source: MALT
+    destination: SICI
+    ATC: 426
+  - market_period: 24
+    source: MALT
+    destination: SICI
+    ATC: 389
+  - market_period: 1
+    source: MONT
+    destination: CSUD
+    ATC: 10174
+  - market_period: 2
+    source: MONT
+    destination: CSUD
+    ATC: 10169
+  - market_period: 3
+    source: MONT
+    destination: CSUD
+    ATC: 9958
+  - market_period: 4
+    source: MONT
+    destination: CSUD
+    ATC: 9833
+  - market_period: 5
+    source: MONT
+    destination: CSUD
+    ATC: 9841
+  - market_period: 6
+    source: MONT
+    destination: CSUD
+    ATC: 9914
+  - market_period: 7
+    source: MONT
+    destination: CSUD
+    ATC: 10275
+  - market_period: 8
+    source: MONT
+    destination: CSUD
+    ATC: 10229
+  - market_period: 9
+    source: MONT
+    destination: CSUD
+    ATC: 9934
+  - market_period: 10
+    source: MONT
+    destination: CSUD
+    ATC: 9683
+  - market_period: 11
+    source: MONT
+    destination: CSUD
+    ATC: 9657
+  - market_period: 12
+    source: MONT
+    destination: CSUD
+    ATC: 9690
+  - market_period: 13
+    source: MONT
+    destination: CSUD
+    ATC: 9678
+  - market_period: 14
+    source: MONT
+    destination: CSUD
+    ATC: 9721
+  - market_period: 15
+    source: MONT
+    destination: CSUD
+    ATC: 9719
+  - market_period: 16
+    source: MONT
+    destination: CSUD
+    ATC: 9950
+  - market_period: 17
+    source: MONT
+    destination: CSUD
+    ATC: 10184
+  - market_period: 18
+    source: MONT
+    destination: CSUD
+    ATC: 10490
+  - market_period: 19
+    source: MONT
+    destination: CSUD
+    ATC: 10489.03
+  - market_period: 20
+    source: MONT
+    destination: CSUD
+    ATC: 10545
+  - market_period: 21
+    source: MONT
+    destination: CSUD
+    ATC: 10535
+  - market_period: 22
+    source: MONT
+    destination: CSUD
+    ATC: 10552
+  - market_period: 23
+    source: MONT
+    destination: CSUD
+    ATC: 10425.1
+  - market_period: 24
+    source: MONT
+    destination: CSUD
+    ATC: 10336
+  - market_period: 1
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 2
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 3
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 4
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 5
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 6
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 7
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 8
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 9
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 10
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 11
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 12
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 13
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 14
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 15
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 16
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 17
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 18
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 19
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 20
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 21
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 22
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 23
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 24
+    source: NORD
+    destination: AUST
+    ATC: 10000
+  - market_period: 1
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 2
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 3
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 4
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 5
+    source: NORD
+    destination: CNOR
+    ATC: 312.14
+  - market_period: 6
+    source: NORD
+    destination: CNOR
+    ATC: 173.83
+  - market_period: 7
+    source: NORD
+    destination: CNOR
+    ATC: 706.61
+  - market_period: 8
+    source: NORD
+    destination: CNOR
+    ATC: 1131.37
+  - market_period: 9
+    source: NORD
+    destination: CNOR
+    ATC: 870.29
+  - market_period: 10
+    source: NORD
+    destination: CNOR
+    ATC: 768.98
+  - market_period: 11
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 12
+    source: NORD
+    destination: CNOR
+    ATC: 319.83
+  - market_period: 13
+    source: NORD
+    destination: CNOR
+    ATC: 77.92
+  - market_period: 14
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 15
+    source: NORD
+    destination: CNOR
+    ATC: 553.38
+  - market_period: 16
+    source: NORD
+    destination: CNOR
+    ATC: 16.51
+  - market_period: 17
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 18
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 19
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 20
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 21
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 22
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 23
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 24
+    source: NORD
+    destination: CNOR
+    ATC: 0
+  - market_period: 1
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 2
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 3
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 4
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 5
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 6
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 7
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 8
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 9
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 10
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 11
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 12
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 13
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 14
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 15
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 16
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 17
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 18
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 19
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 20
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 21
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 22
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 23
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 24
+    source: NORD
+    destination: COUP
+    ATC: 30000
+  - market_period: 1
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 2
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 3
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 4
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 5
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 6
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 7
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 8
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 9
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 10
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 11
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 12
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 13
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 14
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 15
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 16
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 17
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 18
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 19
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 20
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 21
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 22
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 23
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 24
+    source: NORD
+    destination: FRAN
+    ATC: 10000
+  - market_period: 1
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 2
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 3
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 4
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 5
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 6
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 7
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 8
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 9
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 10
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 11
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 12
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 13
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 14
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 15
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 16
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 17
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 18
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 19
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 20
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 21
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 22
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 23
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 24
+    source: NORD
+    destination: SLOV
+    ATC: 10000
+  - market_period: 1
+    source: NORD
+    destination: SVIZ
+    ATC: 12961
+  - market_period: 2
+    source: NORD
+    destination: SVIZ
+    ATC: 12939
+  - market_period: 3
+    source: NORD
+    destination: SVIZ
+    ATC: 12974
+  - market_period: 4
+    source: NORD
+    destination: SVIZ
+    ATC: 12974
+  - market_period: 5
+    source: NORD
+    destination: SVIZ
+    ATC: 12965.3
+  - market_period: 6
+    source: NORD
+    destination: SVIZ
+    ATC: 12947.6
+  - market_period: 7
+    source: NORD
+    destination: SVIZ
+    ATC: 12919
+  - market_period: 8
+    source: NORD
+    destination: SVIZ
+    ATC: 12595
+  - market_period: 9
+    source: NORD
+    destination: SVIZ
+    ATC: 12605
+  - market_period: 10
+    source: NORD
+    destination: SVIZ
+    ATC: 13217
+  - market_period: 11
+    source: NORD
+    destination: SVIZ
+    ATC: 13207
+  - market_period: 12
+    source: NORD
+    destination: SVIZ
+    ATC: 13260.5
+  - market_period: 13
+    source: NORD
+    destination: SVIZ
+    ATC: 13227
+  - market_period: 14
+    source: NORD
+    destination: SVIZ
+    ATC: 13248
+  - market_period: 15
+    source: NORD
+    destination: SVIZ
+    ATC: 13270
+  - market_period: 16
+    source: NORD
+    destination: SVIZ
+    ATC: 13198
+  - market_period: 17
+    source: NORD
+    destination: SVIZ
+    ATC: 13207
+  - market_period: 18
+    source: NORD
+    destination: SVIZ
+    ATC: 13157
+  - market_period: 19
+    source: NORD
+    destination: SVIZ
+    ATC: 13167
+  - market_period: 20
+    source: NORD
+    destination: SVIZ
+    ATC: 13246
+  - market_period: 21
+    source: NORD
+    destination: SVIZ
+    ATC: 13247
+  - market_period: 22
+    source: NORD
+    destination: SVIZ
+    ATC: 13237
+  - market_period: 23
+    source: NORD
+    destination: SVIZ
+    ATC: 13237
+  - market_period: 24
+    source: NORD
+    destination: SVIZ
+    ATC: 12914
+  - market_period: 1
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 2
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 3
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 4
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 5
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 6
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 7
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 8
+    source: SARD
+    destination: COAC
+    ATC: 40
+  - market_period: 9
+    source: SARD
+    destination: COAC
+    ATC: 40
+  - market_period: 10
+    source: SARD
+    destination: COAC
+    ATC: 40
+  - market_period: 11
+    source: SARD
+    destination: COAC
+    ATC: 40
+  - market_period: 12
+    source: SARD
+    destination: COAC
+    ATC: 40
+  - market_period: 13
+    source: SARD
+    destination: COAC
+    ATC: 55
+  - market_period: 14
+    source: SARD
+    destination: COAC
+    ATC: 55
+  - market_period: 15
+    source: SARD
+    destination: COAC
+    ATC: 55
+  - market_period: 16
+    source: SARD
+    destination: COAC
+    ATC: 55
+  - market_period: 17
+    source: SARD
+    destination: COAC
+    ATC: 55
+  - market_period: 18
+    source: SARD
+    destination: COAC
+    ATC: 55
+  - market_period: 19
+    source: SARD
+    destination: COAC
+    ATC: 25
+  - market_period: 20
+    source: SARD
+    destination: COAC
+    ATC: 25
+  - market_period: 21
+    source: SARD
+    destination: COAC
+    ATC: 25
+  - market_period: 22
+    source: SARD
+    destination: COAC
+    ATC: 25
+  - market_period: 23
+    source: SARD
+    destination: COAC
+    ATC: 25
+  - market_period: 24
+    source: SARD
+    destination: COAC
+    ATC: 85
+  - market_period: 1
+    source: SARD
+    destination: CORS
+    ATC: 116
+  - market_period: 2
+    source: SARD
+    destination: CORS
+    ATC: 121
+  - market_period: 3
+    source: SARD
+    destination: CORS
+    ATC: 124
+  - market_period: 4
+    source: SARD
+    destination: CORS
+    ATC: 125
+  - market_period: 5
+    source: SARD
+    destination: CORS
+    ATC: 126
+  - market_period: 6
+    source: SARD
+    destination: CORS
+    ATC: 125
+  - market_period: 7
+    source: SARD
+    destination: CORS
+    ATC: 125
+  - market_period: 8
+    source: SARD
+    destination: CORS
+    ATC: 122
+  - market_period: 9
+    source: SARD
+    destination: CORS
+    ATC: 117
+  - market_period: 10
+    source: SARD
+    destination: CORS
+    ATC: 112
+  - market_period: 11
+    source: SARD
+    destination: CORS
+    ATC: 109
+  - market_period: 12
+    source: SARD
+    destination: CORS
+    ATC: 108
+  - market_period: 13
+    source: SARD
+    destination: CORS
+    ATC: 107
+  - market_period: 14
+    source: SARD
+    destination: CORS
+    ATC: 107
+  - market_period: 15
+    source: SARD
+    destination: CORS
+    ATC: 108
+  - market_period: 16
+    source: SARD
+    destination: CORS
+    ATC: 109
+  - market_period: 17
+    source: SARD
+    destination: CORS
+    ATC: 110
+  - market_period: 18
+    source: SARD
+    destination: CORS
+    ATC: 110
+  - market_period: 19
+    source: SARD
+    destination: CORS
+    ATC: 108
+  - market_period: 20
+    source: SARD
+    destination: CORS
+    ATC: 106
+  - market_period: 21
+    source: SARD
+    destination: CORS
+    ATC: 106
+  - market_period: 22
+    source: SARD
+    destination: CORS
+    ATC: 108
+  - market_period: 23
+    source: SARD
+    destination: CORS
+    ATC: 109
+  - market_period: 24
+    source: SARD
+    destination: CORS
+    ATC: 111
+  - market_period: 1
+    source: SARD
+    destination: CSUD
+    ATC: 977.33
+  - market_period: 2
+    source: SARD
+    destination: CSUD
+    ATC: 910.42
+  - market_period: 3
+    source: SARD
+    destination: CSUD
+    ATC: 864.28
+  - market_period: 4
+    source: SARD
+    destination: CSUD
+    ATC: 839.99
+  - market_period: 5
+    source: SARD
+    destination: CSUD
+    ATC: 833.16
+  - market_period: 6
+    source: SARD
+    destination: CSUD
+    ATC: 830.07
+  - market_period: 7
+    source: SARD
+    destination: CSUD
+    ATC: 862.05
+  - market_period: 8
+    source: SARD
+    destination: CSUD
+    ATC: 855.95
+  - market_period: 9
+    source: SARD
+    destination: CSUD
+    ATC: 789.6
+  - market_period: 10
+    source: SARD
+    destination: CSUD
+    ATC: 692.37
+  - market_period: 11
+    source: SARD
+    destination: CSUD
+    ATC: 601.02
+  - market_period: 12
+    source: SARD
+    destination: CSUD
+    ATC: 524.92
+  - market_period: 13
+    source: SARD
+    destination: CSUD
+    ATC: 474.18
+  - market_period: 14
+    source: SARD
+    destination: CSUD
+    ATC: 371.13
+  - market_period: 15
+    source: SARD
+    destination: CSUD
+    ATC: 287.58
+  - market_period: 16
+    source: SARD
+    destination: CSUD
+    ATC: 275.06
+  - market_period: 17
+    source: SARD
+    destination: CSUD
+    ATC: 303.93
+  - market_period: 18
+    source: SARD
+    destination: CSUD
+    ATC: 458.26
+  - market_period: 19
+    source: SARD
+    destination: CSUD
+    ATC: 390.21
+  - market_period: 20
+    source: SARD
+    destination: CSUD
+    ATC: 699.36
+  - market_period: 21
+    source: SARD
+    destination: CSUD
+    ATC: 624
+  - market_period: 22
+    source: SARD
+    destination: CSUD
+    ATC: 907.24
+  - market_period: 23
+    source: SARD
+    destination: CSUD
+    ATC: 989.13
+  - market_period: 24
+    source: SARD
+    destination: CSUD
+    ATC: 1072.23
+  - market_period: 1
+    source: SICI
+    destination: CALA
+    ATC: 2061.38
+  - market_period: 2
+    source: SICI
+    destination: CALA
+    ATC: 2455.52
+  - market_period: 3
+    source: SICI
+    destination: CALA
+    ATC: 2668.37
+  - market_period: 4
+    source: SICI
+    destination: CALA
+    ATC: 2519.48
+  - market_period: 5
+    source: SICI
+    destination: CALA
+    ATC: 2466.92
+  - market_period: 6
+    source: SICI
+    destination: CALA
+    ATC: 2446.93
+  - market_period: 7
+    source: SICI
+    destination: CALA
+    ATC: 1797.37
+  - market_period: 8
+    source: SICI
+    destination: CALA
+    ATC: 1825.87
+  - market_period: 9
+    source: SICI
+    destination: CALA
+    ATC: 2378.92
+  - market_period: 10
+    source: SICI
+    destination: CALA
+    ATC: 1600
+  - market_period: 11
+    source: SICI
+    destination: CALA
+    ATC: 1600
+  - market_period: 12
+    source: SICI
+    destination: CALA
+    ATC: 1600
+  - market_period: 13
+    source: SICI
+    destination: CALA
+    ATC: 1600
+  - market_period: 14
+    source: SICI
+    destination: CALA
+    ATC: 2392.67
+  - market_period: 15
+    source: SICI
+    destination: CALA
+    ATC: 2337.71
+  - market_period: 16
+    source: SICI
+    destination: CALA
+    ATC: 2292.95
+  - market_period: 17
+    source: SICI
+    destination: CALA
+    ATC: 1949.28
+  - market_period: 18
+    source: SICI
+    destination: CALA
+    ATC: 1814.42
+  - market_period: 19
+    source: SICI
+    destination: CALA
+    ATC: 1956.51
+  - market_period: 20
+    source: SICI
+    destination: CALA
+    ATC: 2022.69
+  - market_period: 21
+    source: SICI
+    destination: CALA
+    ATC: 2144.49
+  - market_period: 22
+    source: SICI
+    destination: CALA
+    ATC: 2239.24
+  - market_period: 23
+    source: SICI
+    destination: CALA
+    ATC: 2462.75
+  - market_period: 24
+    source: SICI
+    destination: CALA
+    ATC: 2340.05
+  - market_period: 1
+    source: SICI
+    destination: MALT
+    ATC: 99
+  - market_period: 2
+    source: SICI
+    destination: MALT
+    ATC: 29
+  - market_period: 3
+    source: SICI
+    destination: MALT
+    ATC: 50
+  - market_period: 4
+    source: SICI
+    destination: MALT
+    ATC: 63
+  - market_period: 5
+    source: SICI
+    destination: MALT
+    ATC: 49
+  - market_period: 6
+    source: SICI
+    destination: MALT
+    ATC: 48
+  - market_period: 7
+    source: SICI
+    destination: MALT
+    ATC: 52
+  - market_period: 8
+    source: SICI
+    destination: MALT
+    ATC: 64
+  - market_period: 9
+    source: SICI
+    destination: MALT
+    ATC: 0
+  - market_period: 10
+    source: SICI
+    destination: MALT
+    ATC: 87
+  - market_period: 11
+    source: SICI
+    destination: MALT
+    ATC: 95
+  - market_period: 12
+    source: SICI
+    destination: MALT
+    ATC: 97
+  - market_period: 13
+    source: SICI
+    destination: MALT
+    ATC: 102
+  - market_period: 14
+    source: SICI
+    destination: MALT
+    ATC: 43
+  - market_period: 15
+    source: SICI
+    destination: MALT
+    ATC: 0
+  - market_period: 16
+    source: SICI
+    destination: MALT
+    ATC: 0
+  - market_period: 17
+    source: SICI
+    destination: MALT
+    ATC: 0
+  - market_period: 18
+    source: SICI
+    destination: MALT
+    ATC: 9
+  - market_period: 19
+    source: SICI
+    destination: MALT
+    ATC: 2
+  - market_period: 20
+    source: SICI
+    destination: MALT
+    ATC: 0
+  - market_period: 21
+    source: SICI
+    destination: MALT
+    ATC: 0
+  - market_period: 22
+    source: SICI
+    destination: MALT
+    ATC: 0
+  - market_period: 23
+    source: SICI
+    destination: MALT
+    ATC: 24
+  - market_period: 24
+    source: SICI
+    destination: MALT
+    ATC: 61
+  - market_period: 1
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 2
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 3
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 4
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 5
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 6
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 7
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 8
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 9
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 10
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 11
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 12
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 13
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 14
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 15
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 16
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 17
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 18
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 19
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 20
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 21
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 22
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 23
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 24
+    source: SLOV
+    destination: NORD
+    ATC: 10000
+  - market_period: 1
+    source: SUD
+    destination: CALA
+    ATC: 2712.09
+  - market_period: 2
+    source: SUD
+    destination: CALA
+    ATC: 2197.63
+  - market_period: 3
+    source: SUD
+    destination: CALA
+    ATC: 1812.79
+  - market_period: 4
+    source: SUD
+    destination: CALA
+    ATC: 956.83
+  - market_period: 5
+    source: SUD
+    destination: CALA
+    ATC: 1392.72
+  - market_period: 6
+    source: SUD
+    destination: CALA
+    ATC: 1438.39
+  - market_period: 7
+    source: SUD
+    destination: CALA
+    ATC: 2920.74
+  - market_period: 8
+    source: SUD
+    destination: CALA
+    ATC: 2917.43
+  - market_period: 9
+    source: SUD
+    destination: CALA
+    ATC: 2302.03
+  - market_period: 10
+    source: SUD
+    destination: CALA
+    ATC: 2103.91
+  - market_period: 11
+    source: SUD
+    destination: CALA
+    ATC: 1647.77
+  - market_period: 12
+    source: SUD
+    destination: CALA
+    ATC: 1661.45
+  - market_period: 13
+    source: SUD
+    destination: CALA
+    ATC: 1880.16
+  - market_period: 14
+    source: SUD
+    destination: CALA
+    ATC: 1463.95
+  - market_period: 15
+    source: SUD
+    destination: CALA
+    ATC: 1842.12
+  - market_period: 16
+    source: SUD
+    destination: CALA
+    ATC: 2034.45
+  - market_period: 17
+    source: SUD
+    destination: CALA
+    ATC: 2909.32
+  - market_period: 18
+    source: SUD
+    destination: CALA
+    ATC: 3040.99
+  - market_period: 19
+    source: SUD
+    destination: CALA
+    ATC: 2964.86
+  - market_period: 20
+    source: SUD
+    destination: CALA
+    ATC: 3185.46
+  - market_period: 21
+    source: SUD
+    destination: CALA
+    ATC: 3093.63
+  - market_period: 22
+    source: SUD
+    destination: CALA
+    ATC: 2939.38
+  - market_period: 23
+    source: SUD
+    destination: CALA
+    ATC: 2819.82
+  - market_period: 24
+    source: SUD
+    destination: CALA
+    ATC: 2640.28
+  - market_period: 1
+    source: SUD
+    destination: CSUD
+    ATC: 4862.15
+  - market_period: 2
+    source: SUD
+    destination: CSUD
+    ATC: 5332.27
+  - market_period: 3
+    source: SUD
+    destination: CSUD
+    ATC: 5462.25
+  - market_period: 4
+    source: SUD
+    destination: CSUD
+    ATC: 5050.39
+  - market_period: 5
+    source: SUD
+    destination: CSUD
+    ATC: 4666.93
+  - market_period: 6
+    source: SUD
+    destination: CSUD
+    ATC: 4607.46
+  - market_period: 7
+    source: SUD
+    destination: CSUD
+    ATC: 4303.23
+  - market_period: 8
+    source: SUD
+    destination: CSUD
+    ATC: 3781.69
+  - market_period: 9
+    source: SUD
+    destination: CSUD
+    ATC: 3715.61
+  - market_period: 10
+    source: SUD
+    destination: CSUD
+    ATC: 3431.17
+  - market_period: 11
+    source: SUD
+    destination: CSUD
+    ATC: 3934.3
+  - market_period: 12
+    source: SUD
+    destination: CSUD
+    ATC: 3723.65
+  - market_period: 13
+    source: SUD
+    destination: CSUD
+    ATC: 3615.94
+  - market_period: 14
+    source: SUD
+    destination: CSUD
+    ATC: 4017.43
+  - market_period: 15
+    source: SUD
+    destination: CSUD
+    ATC: 3523.07
+  - market_period: 16
+    source: SUD
+    destination: CSUD
+    ATC: 3776.52
+  - market_period: 17
+    source: SUD
+    destination: CSUD
+    ATC: 3694.44
+  - market_period: 18
+    source: SUD
+    destination: CSUD
+    ATC: 3313.81
+  - market_period: 19
+    source: SUD
+    destination: CSUD
+    ATC: 2589.58
+  - market_period: 20
+    source: SUD
+    destination: CSUD
+    ATC: 2681.47
+  - market_period: 21
+    source: SUD
+    destination: CSUD
+    ATC: 3060.86
+  - market_period: 22
+    source: SUD
+    destination: CSUD
+    ATC: 3914.51
+  - market_period: 23
+    source: SUD
+    destination: CSUD
+    ATC: 3844.83
+  - market_period: 24
+    source: SUD
+    destination: CSUD
+    ATC: 3951.58
+  - market_period: 1
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 2
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 3
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 4
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 5
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 6
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 7
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 8
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 9
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 10
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 11
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 12
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 13
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 14
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 15
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 16
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 17
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 18
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 19
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 20
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 21
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 22
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 23
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 24
+    source: SUD
+    destination: GREC
+    ATC: 10000
+  - market_period: 1
+    source: SUD
+    destination: XGRE
+    ATC: 0
+  - market_period: 2
+    source: SUD
+    destination: XGRE
+    ATC: 0
+  - market_period: 3
+    source: SUD
+    destination: XGRE
+    ATC: 139.2
+  - market_period: 4
+    source: SUD
+    destination: XGRE
+    ATC: 918.7
+  - market_period: 5
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 6
+    source: SUD
+    destination: XGRE
+    ATC: 728.9
+  - market_period: 7
+    source: SUD
+    destination: XGRE
+    ATC: 218.1
+  - market_period: 8
+    source: SUD
+    destination: XGRE
+    ATC: 629.6
+  - market_period: 9
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 10
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 11
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 12
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 13
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 14
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 15
+    source: SUD
+    destination: XGRE
+    ATC: 1000
+  - market_period: 16
+    source: SUD
+    destination: XGRE
+    ATC: 519.9
+  - market_period: 17
+    source: SUD
+    destination: XGRE
+    ATC: 0
+  - market_period: 18
+    source: SUD
+    destination: XGRE
+    ATC: 71.2
+  - market_period: 19
+    source: SUD
+    destination: XGRE
+    ATC: 81.2
+  - market_period: 20
+    source: SUD
+    destination: XGRE
+    ATC: 0
+  - market_period: 21
+    source: SUD
+    destination: XGRE
+    ATC: 0
+  - market_period: 22
+    source: SUD
+    destination: XGRE
+    ATC: 0
+  - market_period: 23
+    source: SUD
+    destination: XGRE
+    ATC: 297.2
+  - market_period: 24
+    source: SUD
+    destination: XGRE
+    ATC: 507.9
+  - market_period: 1
+    source: SVIZ
+    destination: NORD
+    ATC: 7039
+  - market_period: 2
+    source: SVIZ
+    destination: NORD
+    ATC: 7061
+  - market_period: 3
+    source: SVIZ
+    destination: NORD
+    ATC: 7026
+  - market_period: 4
+    source: SVIZ
+    destination: NORD
+    ATC: 7026
+  - market_period: 5
+    source: SVIZ
+    destination: NORD
+    ATC: 7034.7
+  - market_period: 6
+    source: SVIZ
+    destination: NORD
+    ATC: 7052.4
+  - market_period: 7
+    source: SVIZ
+    destination: NORD
+    ATC: 7081
+  - market_period: 8
+    source: SVIZ
+    destination: NORD
+    ATC: 7405
+  - market_period: 9
+    source: SVIZ
+    destination: NORD
+    ATC: 7395
+  - market_period: 10
+    source: SVIZ
+    destination: NORD
+    ATC: 6783
+  - market_period: 11
+    source: SVIZ
+    destination: NORD
+    ATC: 6793
+  - market_period: 12
+    source: SVIZ
+    destination: NORD
+    ATC: 6739.5
+  - market_period: 13
+    source: SVIZ
+    destination: NORD
+    ATC: 6773
+  - market_period: 14
+    source: SVIZ
+    destination: NORD
+    ATC: 6752
+  - market_period: 15
+    source: SVIZ
+    destination: NORD
+    ATC: 6730
+  - market_period: 16
+    source: SVIZ
+    destination: NORD
+    ATC: 6802
+  - market_period: 17
+    source: SVIZ
+    destination: NORD
+    ATC: 6793
+  - market_period: 18
+    source: SVIZ
+    destination: NORD
+    ATC: 6843
+  - market_period: 19
+    source: SVIZ
+    destination: NORD
+    ATC: 6833
+  - market_period: 20
+    source: SVIZ
+    destination: NORD
+    ATC: 6754
+  - market_period: 21
+    source: SVIZ
+    destination: NORD
+    ATC: 6753
+  - market_period: 22
+    source: SVIZ
+    destination: NORD
+    ATC: 6763
+  - market_period: 23
+    source: SVIZ
+    destination: NORD
+    ATC: 6763
+  - market_period: 24
+    source: SVIZ
+    destination: NORD
+    ATC: 7086
+  - market_period: 1
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 2
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 3
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 4
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 5
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 6
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 7
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 8
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 9
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 10
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 11
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 12
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 13
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 14
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 15
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 16
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 17
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 18
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 19
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 20
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 21
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 22
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 23
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 24
+    source: XAUS
+    destination: COUP
+    ATC: 0
+  - market_period: 1
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 2
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 3
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 4
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 5
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 6
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 7
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 8
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 9
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 10
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 11
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 12
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 13
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 14
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 15
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 16
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 17
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 18
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 19
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 20
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 21
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 22
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 23
+    source: XFRA
+    destination: COUP
+    ATC: 1777
+  - market_period: 24
+    source: XFRA
+    destination: COUP
+    ATC: 0
+  - market_period: 1
+    source: XGRE
+    destination: SUD
+    ATC: 1000
+  - market_period: 2
+    source: XGRE
+    destination: SUD
+    ATC: 1000
+  - market_period: 3
+    source: XGRE
+    destination: SUD
+    ATC: 860.8
+  - market_period: 4
+    source: XGRE
+    destination: SUD
+    ATC: 81.3
+  - market_period: 5
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 6
+    source: XGRE
+    destination: SUD
+    ATC: 271.1
+  - market_period: 7
+    source: XGRE
+    destination: SUD
+    ATC: 781.9
+  - market_period: 8
+    source: XGRE
+    destination: SUD
+    ATC: 370.4
+  - market_period: 9
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 10
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 11
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 12
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 13
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 14
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 15
+    source: XGRE
+    destination: SUD
+    ATC: 0
+  - market_period: 16
+    source: XGRE
+    destination: SUD
+    ATC: 480.1
+  - market_period: 17
+    source: XGRE
+    destination: SUD
+    ATC: 1000
+  - market_period: 18
+    source: XGRE
+    destination: SUD
+    ATC: 928.8
+  - market_period: 19
+    source: XGRE
+    destination: SUD
+    ATC: 918.8
+  - market_period: 20
+    source: XGRE
+    destination: SUD
+    ATC: 1000
+  - market_period: 21
+    source: XGRE
+    destination: SUD
+    ATC: 1000
+  - market_period: 22
+    source: XGRE
+    destination: SUD
+    ATC: 1000
+  - market_period: 23
+    source: XGRE
+    destination: SUD
+    ATC: 702.8
+  - market_period: 24
+    source: XGRE
+    destination: SUD
+    ATC: 492.1
