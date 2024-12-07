@@ -9,7 +9,7 @@ lines:
     market_period: 1
   - source: "B"
     destination: "C"
-    ATC: 2
+    ATC: 1000
     market_period: 1
   - source: "C"
     destination: "B"
@@ -17,7 +17,7 @@ lines:
     market_period: 1
   - source: "A"
     destination: "B"
-    ATC: 2
+    ATC: 1000
     market_period: 2
   - source: "B"
     destination: "A"
@@ -25,7 +25,7 @@ lines:
     market_period: 2
   - source: "B"
     destination: "C"
-    ATC: 1000
+    ATC: 1
     market_period: 2
   - source: "C"
     destination: "B"

@@ -1,64 +1,40 @@
 bids:
+  - id: 1
+    block:
+      - market_period: 1
+        quantity: 100
+      - market_period: 2
+        quantity: 200
+    price: 100
+    type: "block"
+    purpose: "buy"
+    MAR: 0.0
+    zone: A
   - id: 2
     market_period: 1
     price: 150
     quantity: 100
     type: "simple"
     purpose: "sell"
-    zone: "A"
+    zone: B
   - id: 3
     market_period: 2
     price: 20
     quantity: 200
     type: "simple"
     purpose: "sell"
-    zone: "C"
+    zone: C
   - id: 4
-    market_period: 2
-    price: 80
-    quantity: 200
+    market_period: 1
+    price: 101
+    quantity: 100
     type: "simple"
     purpose: "sell"
-    zone: "B"
+    zone: B
   - id: 5
-    market_period: 2
-    price: 77
-    quantity: 5
-    type: "simple"
-    purpose: "sell"
-    zone: "C"
-  - id: 6
-    market_period: 2
-    price: 120
-    quantity: 30
-    type: "simple"
-    purpose: "buy"
-    zone: "C"
-  - id: 7
     market_period: 1
-    price: 0
-    quantity: 30
-    type: "simple"
-    purpose: "sell"
-    zone: "A"
-  - id: 9
-    market_period: 2
-    price: 0
-    quantity: 1
-    type: "simple"
-    purpose: "sell"
-    zone: "A"
-  - id: 8
-    market_period: 2
-    price: 95
-    quantity: 30
+    price: 300
+    quantity: 100
     type: "simple"
     purpose: "buy"
-    zone: "B"
-  - id: 1
-    market_period: 1
-    price: 95
-    quantity: 30
-    type: "simple"
-    purpose: "buy"
-    zone: "A"
+    zone: A

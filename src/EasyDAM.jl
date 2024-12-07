@@ -150,12 +150,12 @@ function flatten_bids(bids::Vector{Bid})::DataFrames.DataFrame
     flattened_bids = DataFrames.DataFrame(id=UInt64[],price=Float64[],MAR=Float64[],zone=String[],profile=Vector{Float64}[])
     for bid in bids
         if isa(bid,SimpleBid)
-            profile = zeros(100)
+            profile = zeros(24)
             profile[bid.market_period]=bid.quantity*(bid.purpose==EasyDAM.sell ? 1 : -1)
             push!(flattened_bids,(id=bid.id, price=bid.price, MAR=0.0, zone=bid.zone, profile=profile))
         end
         if isa(bid,BlockBid)
-            profile = zeros(100)
+            profile = zeros(24)
             for slice in bid.block
                 profile[slice.market_period]=slice.quantity*(bid.purpose==EasyDAM.sell ? 1 : -1)
             end
@@ -166,78 +166,188 @@ function flatten_bids(bids::Vector{Bid})::DataFrames.DataFrame
 end
 
 # Market building methods
-function get_zonal_limits(lines::Vector{Line},zones::Vector{String})::DataFrames.DataFrame
-    export_profiles = Vector{Float64}[]
-    import_profiles = Vector{Float64}[]
+function get_zonal_limits(lines::Vector{Line}, zones::Vector{String})::DataFrames.DataFrame
+    export_profiles = Vector{Vector{Float64}}()
+    import_profiles = Vector{Vector{Float64}}()
+
+    # Process each zone
     for zone in zones
-        export_profile = zeros(100)
-        import_profile = zeros(100)
+        export_profile = zeros(24)  # Assuming 24 hours as per the original logic
+        import_profile = zeros(24)
+        
+        # Aggregate profiles for each zone
         for line in lines
             if line.source == zone
                 export_profile[line.market_period] += line.ATC
-            end
-            if line.destination == zone
+            elseif line.destination == zone
                 import_profile[line.market_period] -= line.ATC
             end
         end
-        push!(export_profiles,export_profile)
-        push!(import_profiles,import_profile)
+
+        push!(export_profiles, export_profile)
+        push!(import_profiles, import_profile)
     end
-    return DataFrames.DataFrame(zone=zones,export_limit=export_profiles,import_limit=import_profiles)
+
+    # Create DataFrame
+    return DataFrames.DataFrame(
+        zone = zones,
+        export_limit = export_profiles,
+        import_limit = import_profiles
+    )
 end
 
-# Home of the magical gnomes
-function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFrames.DataFrame)
-    model = JuMP.Model(HiGHS.Optimizer)
-    JuMP.@variable(model, x[bids.id])
-    for bid in eachrow(bids)
-        JuMP.@constraint(model, x[bid.id] in JuMP.Semicontinuous(bid.MAR, 1.0))
+function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFrames.DataFrame
+    upstream_profiles = Vector{Vector{Float64}}()
+    downstream_profiles = Vector{Vector{Float64}}()
+    line_ids = Set{Tuple{String, String}}()
+    line_froms = Vector{String}()
+    line_tos = Vector{String}()
+    ids = Vector{String}()
+
+    # Populate unique line_ids
+    for line in lines
+        line_tuple = (line.source, line.destination)
+        reverse_tuple = (line.destination, line.source)
+        if !(line_tuple in line_ids || reverse_tuple in line_ids)
+            push!(line_ids, line_tuple)
+        end
     end
-    JuMP.@variable(model, s[bids.id] >= 0)
+
+    # Process each unique line_id
+    for (line_from, line_to) in line_ids
+        upstream_profile = zeros(24)  # Assuming 24 hours as per the original logic
+        downstream_profile = zeros(24)
+        
+        # Aggregate profiles
+        for line in lines
+            if line.source == line_from && line.destination == line_to
+                upstream_profile[line.market_period] += line.ATC
+            elseif line.source == line_to && line.destination == line_from
+                downstream_profile[line.market_period] += line.ATC
+            end
+        end
+
+        push!(line_froms, line_from)
+        push!(line_tos, line_to)
+        push!(ids, line_from * line_to)
+        push!(upstream_profiles, upstream_profile)
+        push!(downstream_profiles, downstream_profile)
+    end
+
+    # Create DataFrame
+    return DataFrames.DataFrame(
+        line_id = ids,
+        line_from = line_froms,
+        line_to = line_tos,
+        upstream_profile = upstream_profiles,
+        downstream_profile = downstream_profiles
+    )
+end
+# Home of the magical gnomes
+function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFrames.DataFrame,line_profiles::DataFrames.DataFrame)
+    model = JuMP.Model(HiGHS.Optimizer)
+    JuMP.@variable(model, x[bids.id] >= 0.0)
+    for bid in eachrow(bids)
+        JuMP.@constraint(model, x[bid.id] <= 1.0) #TODO: add MAR usage
+    end
+    JuMP.@variable(model, s[bids.id] >= 0.0)
     bids.x = Array(x)
     bids.s = Array(s)
-    JuMP.@variable(model, MCP_UNC[i=1:100])
-    JuMP.@variable(model, u[i=1:100,zonal_limits.zone] >=0)
-    JuMP.@variable(model, v[i=1:100,zonal_limits.zone] >=0)
-    zonal_limits.p = Array([v[1:100, zl.zone].-u[1:100, zl.zone].+MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
-    zonal_limits.cc = Array([v[1:100, zl.zone].-u[1:100, zl.zone] for zl in eachrow(zonal_limits)])
-    zonal_limits.u = Array([u[1:100, zl.zone] for zl in eachrow(zonal_limits)])
-    zonal_limits.v = Array([v[1:100, zl.zone] for zl in eachrow(zonal_limits)])
-    zonal_limits.MCP_UNC = Array([MCP_UNC[1:100] for zl in eachrow(zonal_limits)])
-    zonal_limits2 = zonal_limits
-    filter!(zl -> zl.zone in bids.zone, zonal_limits2)
+    JuMP.@variable(model, p[i=1:24,zonal_limits.zone])
+    zonal_limits.p = Array([p[1:24, zl.zone] for zl in eachrow(zonal_limits)])
+    for zl in eachrow(zonal_limits)
+       JuMP.@constraint(model, p[:,zl.zone] .<= 9999.0)
+       JuMP.@constraint(model, p[:,zl.zone] .>= -9999.0)
+    end
     market = DataFrames.leftjoin(bids,zonal_limits,on=:zone)
-    sourcing_constraint = JuMP.@constraint(model,
-        [zl in eachrow(zonal_limits2)],
-        sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .<= zl.export_limit)
-    sinking_constraint = JuMP.@constraint(model,
-        [zl in eachrow(zonal_limits2)],
-        sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .>= zl.import_limit)
-    grid_balance_constraint = JuMP.@constraint(model,
-        grid_balance_constraint,
-        sum(market.x .* market.profile, dims=1)[1] .== zeros(100))
-    surplus_constraint = JuMP.@constraint(model,
+    JuMP.@variable(model, upstream_flow[i=1:24,line_profiles.line_id])
+    JuMP.@variable(model, downstream_flow[i=1:24,line_profiles.line_id])
+    JuMP.@variable(model, upstream_profit[i=1:24,line_profiles.line_id])
+    JuMP.@variable(model, downstream_profit[i=1:24,line_profiles.line_id])
+    for line in eachrow(line_profiles)
+        JuMP.@constraint(model, upstream_profit[:,line.line_id] .>= zeros(24))
+        JuMP.@constraint(model, downstream_profit[:,line.line_id] .>= zeros(24))
+        JuMP.@constraint(model, upstream_flow[:,line.line_id] .>= zeros(24))
+        JuMP.@constraint(model, downstream_flow[:,line.line_id] .>= zeros(24))
+        JuMP.@constraint(model, upstream_flow[:,line.line_id] .<= line.upstream_profile)
+        JuMP.@constraint(model, downstream_flow[:,line.line_id] .<= line.downstream_profile)
+    end
+    JuMP.@expression(model, flow[i=1:24,line=line_profiles.line_id], upstream_flow[i,line] .- downstream_flow[i,line])
+    
+    
+    # grid_balance_constraint = JuMP.@constraint(model,
+    #     grid_balance_constraint,
+    #     sum(market.x .* market.profile, dims=1)[1] .== zeros(24))
+    
+    xprt = Dict{String, Vector{JuMP.AffExpr}}()
+    for zl in eachrow(zonal_limits)
+        zone = zl.zone  
+        xprt[zone] = Vector{JuMP.AffExpr}(undef, 24)  
+        for i in eachindex(xprt[zone])
+            xprt[zone][i] = JuMP.AffExpr(0.0)
+        end
+        for line in eachrow(line_profiles)
+            if line.line_from == zone
+                xprt[zone] = xprt[zone] .+ flow[:, line.line_id]
+            elseif line.line_to == zone
+                xprt[zone] = xprt[zone] .- flow[:, line.line_id]
+            end
+        end
+    end
+
+    for zl in eachrow(zonal_limits)
+        # println(zl.zone * "-" * string(isempty(market[market.zone.==zl.zone,:])))
+        if !isempty(market[market.zone.==zl.zone,:])
+            JuMP.@constraint(model,
+            sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .>= xprt[zl.zone])
+            JuMP.@constraint(model,
+            sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .<= xprt[zl.zone])
+        else
+            JuMP.@constraint(model,
+            xprt[zl.zone] .== zeros(24))
+        end
+    end
+    JuMP.@constraint(model,
         [b in eachrow(market)],
         b.s >= sum(b.profile .* (b.p .- b.price))
     )
+
     JuMP.@constraint(model,
+        [l in eachrow(line_profiles)],
+        p[:,l.line_to] .- p[:,l.line_from] .<= upstream_profit[:,l.line_id]
+    )
+
+    JuMP.@constraint(model,
+        [l in eachrow(line_profiles)],
+        p[:,l.line_from] .- p[:,l.line_to] .<= downstream_profit[:,l.line_id]
+    )
+
+    JuMP.@constraint(
+        model,
         duality_constraint,
-        sum(market.s) == sum([sum(m.x .* m.profile .* m.price) for m in eachrow(market)]) 
-                        - sum([sum(zl.import_limit .* zl.u) for zl in eachrow(zonal_limits)])
-                        + sum([sum(zl.export_limit .* zl.v) for zl in eachrow(zonal_limits)])
+        sum(market.s)
+        + sum([sum(upstream_profit[:, line.line_id] .* line.upstream_profile) for line in eachrow(line_profiles)])
+        + sum([sum(downstream_profit[:, line.line_id] .* line.downstream_profile) for line in eachrow(line_profiles)])
+        == -sum(sum(market.x .* market.profile .* market.price))
     )
 
     JuMP.@objective(model, Max, -sum(sum(market.x .* market.profile .* market.price)))
     JuMP.optimize!(model)
     @assert JuMP.is_solved_and_feasible(model)
-    JuMP.solution_summary(model)
-    market.p = [Array(JuMP.value.(m.p)) for m in eachrow(market)]
+    println(JuMP.solution_summary(model))
+    for l in eachrow(line_profiles)
+        if l.line_id == "MALTSICI"
+            println(l.line_id * "- flow: " *string(JuMP.value.(flow[:,l.line_id]))* "- uflow: " *string(JuMP.value.(upstream_flow[:,l.line_id]))* "- dflow: " *string(JuMP.value.(downstream_flow[:,l.line_id])))
+            println(l.line_id * "- uflow: " *string(JuMP.value.(upstream_profit[:,l.line_id]))* "- dflow: " *string(JuMP.value.(downstream_profit[:,l.line_id])))
+        end
+    end
+    market.zp = [Array(JuMP.value.(m.p)) for m in eachrow(market)]
+    #market.mcp_unc = [Array(JuMP.value.(MCP_UNC[1:24])) for m in eachrow(market)]
     market.x = [JuMP.value(m.x) for m in eachrow(market)]
     market.s = [JuMP.value(m.s) for m in eachrow(market)]
-    zonal_limits.p = [Array(JuMP.value.(zl.p)) for zl in eachrow(zonal_limits)]
-    zonal_limits.cc = [Array(JuMP.value.(zl.cc)) for zl in eachrow(zonal_limits)]
-    zonal_limits.MCP_UNC = [Array(JuMP.value.(zl.MCP_UNC)) for zl in eachrow(zonal_limits)]
-    return (zonal_limits[:, [:zone,:MCP_UNC,:cc,:p]],market[:, [:zone,:profile,:price,:x,:p,:s]])
+    zonal_limits.zp = [Array(JuMP.value.(zl.p)) for zl in eachrow(zonal_limits)]
+    return (zonal_limits[:,[:zone,:zp]],market[:, [:zone,:profile,:price,:x,:s,:zp]],model)
+    #return (market[:, [:zone,:profile,:x,:p]],model)
     
 end
 
