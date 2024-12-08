@@ -1,30 +1,33 @@
 module EasyDAM
-import YAML
-import StructTypes
-import DataFrames.DataFrames
-import JuMP
-import HiGHS
+using YAML
+using StructTypes
+using DataFrames
+using JuMP
+using HiGHS
+
+# Global config
+global const NUM_TIMESTEPS::UInt64 = 24
 
 # Type declarations
 struct Line
     source::String
     destination::String
     ATC::Float64
-    market_period::UInt8
+    market_period::UInt64
 end
-StructTypes.StructType(::Type{Line}) = StructTypes.Struct()
+StructType(::Type{Line}) = Struct()
 
 @enum Purpose buy sell
-StructTypes.StructType(::Type{Purpose}) = StructTypes.StringType()
+StructType(::Type{Purpose}) = StringType()
 
 @enum BidType block simple
-StructTypes.StructType(::Type{BidType}) = StructTypes.StringType()
+StructType(::Type{BidType}) = StringType()
 
 struct BlockSlice
     market_period::UInt64
     quantity::Float64
 end
-StructTypes.StructType(::Type{BlockSlice}) = StructTypes.Struct()
+StructType(::Type{BlockSlice}) = Struct()
 
 abstract type Bid end
 
@@ -37,18 +40,18 @@ struct BlockBid <: Bid
     zone::String
     MAR::Float64
 end
-StructTypes.StructType(::Type{BlockBid}) = StructTypes.Struct()
+StructType(::Type{BlockBid}) = Struct()
 
 struct SimpleBid <: Bid
     id::UInt64
     quantity::Float64
     price::Float64
-    market_period::UInt8
+    market_period::UInt64
     type::EasyDAM.BidType
     purpose::EasyDAM.Purpose
     zone::String
 end
-StructTypes.StructType(::Type{SimpleBid}) = StructTypes.Struct()
+StructType(::Type{SimpleBid}) = Struct()
 
 # Exception declarations
 struct DuplicateLineError <: Exception
@@ -62,120 +65,203 @@ struct BadFileError <: Exception
 end
 
 # File parsing methods
+
+"""
+    load_lines(filepath::String) -> Vector{Line}
+
+Loads and validates lines from a YAML file. Ensures no duplicate lines and 
+that the file is well-formed.
+
+# Arguments
+- `filepath::String`: Path to the YAML file containing the lines.
+
+# Returns
+- A vector of `Line` objects parsed from the file.
+
+# Throws
+- `BadFileError`: If the file is invalid or ill-formed.
+- `DuplicateLineError`: If duplicate lines are found in the file.
+"""
 function load_lines(filepath::String)::Vector{Line}
-    if !isfile(filepath) || !(splitext(filepath)[end] in [".yaml",".yml"])
-        throw(BadFileError(filepath * ": not a valid file."))
+    if !isfile(filepath) || !(splitext(filepath)[end] in [".yaml", ".yml"])
+        throw(BadFileError("$filepath: not a valid file."))
     end
-    lines_dict = YAML.load_file(filepath; dicttype=Dict{Symbol,Any})
+
+    lines_dict = YAML.load_file(filepath; dicttype=Dict{Symbol, Any})
+    if !haskey(lines_dict, :lines)
+        throw(BadFileError("$filepath: this file might be ill-formed."))
+    end
+
     lines = Line[]
-    if !(:lines in keys(lines_dict))
-        throw(BadFileError(filepath * ": this file might be ill-formed."))
-    end
-    for line in lines_dict[:lines]
-        try
-            line = StructTypes.constructfrom(Line,line)
-            if (line.source,line.destination,line.market_period) in [(l.source,l.destination,l.market_period) for l in lines]
-                throw(DuplicateLineError("A line originating in " * line.source *
-                " and terminating in " *
-                line.destination *
-                " for market period " *
-                string(line.market_period) *
-                " has been specified twice in " *
-                filepath * "."))
-            end
-            push!(lines,line)
+    for raw_line in lines_dict[:lines]
+        line = try
+            StructTypes.constructfrom(Line, raw_line)
         catch e
-            if isa(e,MethodError)
-                throw(BadFileError(filepath * ": this file might be ill-formed."))
+            if isa(e, MethodError)
+                throw(BadFileError("$filepath: this file might be ill-formed."))
             else
                 rethrow(e)
             end
         end
+
+        if is_duplicate_line(line, lines)
+            throw(DuplicateLineError(
+                "A line originating in $(line.source) and terminating in \
+                $(line.destination) for market period $(line.market_period) \
+                has been specified twice in $filepath."
+            ))
+        end
+
+        push!(lines, line)
     end
+
     return lines
 end
 
+function is_duplicate_line(new_line::Line, existing_lines::Vector{Line})::Bool
+    return (new_line.source, new_line.destination, new_line.market_period) in 
+           [(line.source, line.destination, line.market_period) for line in 
+           existing_lines]
+end
+
+"""
+    load_bids(filepath::String) -> Vector{Bid}
+
+Loads and validates bids from a YAML file. Ensures no duplicate bids and that \
+the file is well-formed.
+
+# Arguments
+- `filepath::String`: Path to the YAML file containing the bids.
+
+# Returns
+- A vector of `Bid` objects (both `SimpleBid` and `BlockBid`) parsed from the \
+  file.
+
+# Throws
+- `BadFileError`: If the file is invalid or ill-formed.
+- `DuplicateBidError`: If duplicate bids are found in the file.
+"""
 function load_bids(filepath::String)::Vector{Bid}
     if !isfile(filepath) || !(splitext(filepath)[end] in [".yaml", ".yml"])
-        throw(BadFileError(filepath * ": not a valid file."))
+        throw(BadFileError("$filepath: not a valid file."))
     end
-    
+
     bids_dict = YAML.load_file(filepath; dicttype=Dict{Symbol, Any})
     simple_bids = SimpleBid[]
     block_bids = BlockBid[]
     ids = UInt64[]
-    if !(:bids in keys(bids_dict))
-        throw(BadFileError(filepath * ": this file might be ill-formed."))
+    if !haskey(bids_dict, :bids)
+        throw(BadFileError("$filepath: this file might be ill-formed."))
     end
+
     for bid in bids_dict[:bids]
-        try  # attempt to parse as a block bid...
+        try
             block_bid = StructTypes.constructfrom(BlockBid, bid)
             if block_bid.id in ids
-                throw(DuplicateBidError("A bid with id number " *
-                                        string(block_bid.id) *
-                                        " has been specified twice in " *
-                                        filepath * "."))
+                throw(DuplicateBidError(
+                    "A bid with id number $(block_bid.id) has been specified \
+                    twice in $filepath."
+                ))
             end
             push!(block_bids, block_bid)
             push!(ids, block_bid.id)
         catch e
-            if isa(e, MethodError)  # ... it failed! Attempt to parse as a simple bid
+            if isa(e, MethodError)
                 try
                     simple_bid = StructTypes.constructfrom(SimpleBid, bid)
                     if simple_bid.id in ids
-                        throw(DuplicateBidError("A bid with id number " *
-                                                string(simple_bid.id) *
-                                                " has been specified twice in " *
-                                                filepath * "."))
+                        throw(DuplicateBidError(
+                            "A bid with id number $(simple_bid.id) has been \
+                            specified twice in $filepath."
+                        ))
                     end
                     push!(simple_bids, simple_bid)
                     push!(ids, simple_bid.id)
                 catch f
                     if isa(f, MethodError)
-                        throw(BadFileError(filepath * ": this file might be ill-formed."))
+                        throw(BadFileError(
+                            "$filepath: this file might be ill-formed."
+                        ))
                     else
                         rethrow(f)
                     end
-                end 
+                end
             else
                 rethrow(e)
             end
-        end 
+        end
     end
 
     return [simple_bids; block_bids]
 end
 
-function flatten_bids(bids::Vector{Bid})::DataFrames.DataFrame
-    flattened_bids = DataFrames.DataFrame(id=UInt64[],price=Float64[],MAR=Float64[],zone=String[],profile=Vector{Float64}[])
+"""
+    flatten_bids(bids::Vector{Bid}) -> DataFrame
+
+Converts a vector of `Bid` objects into a flattened `DataFrame` format with \
+fields such as `id`, `price`, `MAR`, `zone`, and `profile`.
+
+# Arguments
+- `bids::Vector{Bid}`: The vector of `Bid` objects to flatten.
+
+# Returns
+- A `DataFrame` with the flattened representation of the bids.
+"""
+function flatten_bids(bids::Vector{Bid})::DataFrame
+    flattened_bids = DataFrame(
+        id=UInt64[], price=Float64[], MAR=Float64[], zone=String[], 
+        profile=Vector{Float64}[]
+    )
+
     for bid in bids
-        if isa(bid,SimpleBid)
-            profile = zeros(24)
-            profile[bid.market_period]=bid.quantity*(bid.purpose==EasyDAM.sell ? 1 : -1)
-            push!(flattened_bids,(id=bid.id, price=bid.price, MAR=0.0, zone=bid.zone, profile=profile))
+        if isa(bid, SimpleBid)
+            profile = zeros(NUM_TIMESTEPS)
+            profile[bid.market_period] = bid.quantity *
+                (bid.purpose == EasyDAM.sell ? 1 : -1)
+            push!(flattened_bids, (
+                id=bid.id, price=bid.price, MAR=0.0, zone=bid.zone, 
+                profile=profile
+            ))
         end
-        if isa(bid,BlockBid)
-            profile = zeros(24)
+
+        if isa(bid, BlockBid)
+            profile = zeros(NUM_TIMESTEPS)
             for slice in bid.block
-                profile[slice.market_period]=slice.quantity*(bid.purpose==EasyDAM.sell ? 1 : -1)
+                profile[slice.market_period] = slice.quantity *
+                    (bid.purpose == EasyDAM.sell ? 1 : -1)
             end
-            push!(flattened_bids,(id=bid.id, price=bid.price, MAR=bid.MAR, zone=bid.zone, profile=profile))
+            push!(flattened_bids, (
+                id=bid.id, price=bid.price, MAR=bid.MAR, zone=bid.zone, 
+                profile=profile
+            ))
         end
     end
+
     return flattened_bids
 end
 
 # Market building methods
-function get_zonal_limits(lines::Vector{Line}, zones::Vector{String})::DataFrames.DataFrame
+"""
+    get_zonal_limits(lines::Vector{Line}, zones::Vector{String}) -> DataFrame
+
+Calculates the zonal export and import limits based on the given lines and
+zones.
+
+# Arguments
+- `lines::Vector{Line}`: A vector of `Line` objects defining the network.
+- `zones::Vector{String}`: A vector of zone names to calculate limits for.
+
+# Returns
+- A `DataFrame` containing zones, export limits, and import limits.
+"""
+function get_zonal_limits(lines::Vector{Line}, zones::Vector{String})::DataFrame
     export_profiles = Vector{Vector{Float64}}()
     import_profiles = Vector{Vector{Float64}}()
 
-    # Process each zone
     for zone in zones
-        export_profile = zeros(24)  # Assuming 24 hours as per the original logic
-        import_profile = zeros(24)
-        
-        # Aggregate profiles for each zone
+        export_profile = zeros(NUM_TIMESTEPS)
+        import_profile = zeros(NUM_TIMESTEPS)
+
         for line in lines
             if line.source == zone
                 export_profile[line.market_period] += line.ATC
@@ -188,15 +274,29 @@ function get_zonal_limits(lines::Vector{Line}, zones::Vector{String})::DataFrame
         push!(import_profiles, import_profile)
     end
 
-    # Create DataFrame
-    return DataFrames.DataFrame(
+    return DataFrame(
         zone = zones,
         export_limit = export_profiles,
         import_limit = import_profiles
     )
 end
 
-function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFrames.DataFrame
+"""
+    get_line_profiles(lines::Vector{Line}, zones::Vector{String}) -> DataFrame
+
+Calculates upstream and downstream profiles for each unique line defined by
+its source and destination.
+
+# Arguments
+- `lines::Vector{Line}`: A vector of `Line` objects defining the network.
+- `zones::Vector{String}`: A vector of zone names (though zones are not used in
+  this function).
+
+# Returns
+- A `DataFrame` containing line IDs, sources, destinations, upstream profiles,
+  and downstream profiles.
+"""
+function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFrame
     upstream_profiles = Vector{Vector{Float64}}()
     downstream_profiles = Vector{Vector{Float64}}()
     line_ids = Set{Tuple{String, String}}()
@@ -204,7 +304,6 @@ function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFram
     line_tos = Vector{String}()
     ids = Vector{String}()
 
-    # Populate unique line_ids
     for line in lines
         line_tuple = (line.source, line.destination)
         reverse_tuple = (line.destination, line.source)
@@ -213,12 +312,10 @@ function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFram
         end
     end
 
-    # Process each unique line_id
     for (line_from, line_to) in line_ids
-        upstream_profile = zeros(24)  # Assuming 24 hours as per the original logic
-        downstream_profile = zeros(24)
-        
-        # Aggregate profiles
+        upstream_profile = zeros(NUM_TIMESTEPS)
+        downstream_profile = zeros(NUM_TIMESTEPS)
+
         for line in lines
             if line.source == line_from && line.destination == line_to
                 upstream_profile[line.market_period] += line.ATC
@@ -234,8 +331,7 @@ function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFram
         push!(downstream_profiles, downstream_profile)
     end
 
-    # Create DataFrame
-    return DataFrames.DataFrame(
+    return DataFrame(
         line_id = ids,
         line_from = line_froms,
         line_to = line_tos,
@@ -243,48 +339,44 @@ function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFram
         downstream_profile = downstream_profiles
     )
 end
+
 # Home of the magical gnomes
-function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFrames.DataFrame,line_profiles::DataFrames.DataFrame)
-    model = JuMP.Model(HiGHS.Optimizer)
-    JuMP.@variable(model, x[bids.id] >= 0.0)
+function build_and_solve_market(bids::DataFrame,zonal_limits::DataFrame,line_profiles::DataFrame)::Tuple{DataFrame,DataFrame,DataFrame}
+    model = Model(HiGHS.Optimizer)
+    @variable(model, x[bids.id] >= 0.0)
     for bid in eachrow(bids)
-        JuMP.@constraint(model, x[bid.id] <= 1.0) #TODO: add MAR usage
+        @constraint(model, x[bid.id] <= 1.0) #TODO: add MAR usage
     end
-    JuMP.@variable(model, s[bids.id] >= 0.0)
+    @variable(model, s[bids.id] >= 0.0)
     bids.x = Array(x)
     bids.s = Array(s)
-    JuMP.@variable(model, p[i=1:24,zonal_limits.zone])
-    zonal_limits.p = Array([p[1:24, zl.zone] for zl in eachrow(zonal_limits)])
+    @variable(model, p[i=1:NUM_TIMESTEPS,zonal_limits.zone])
+    zonal_limits.p = Array([p[:, zl.zone] for zl in eachrow(zonal_limits)])
     for zl in eachrow(zonal_limits)
-       JuMP.@constraint(model, p[:,zl.zone] .<= 9999.0)
-       JuMP.@constraint(model, p[:,zl.zone] .>= -9999.0)
+       @constraint(model, p[:,zl.zone] .<= 9999.0)
+       @constraint(model, p[:,zl.zone] .>= -9999.0)
     end
-    market = DataFrames.leftjoin(bids,zonal_limits,on=:zone)
-    JuMP.@variable(model, upstream_flow[i=1:24,line_profiles.line_id])
-    JuMP.@variable(model, downstream_flow[i=1:24,line_profiles.line_id])
-    JuMP.@variable(model, upstream_profit[i=1:24,line_profiles.line_id])
-    JuMP.@variable(model, downstream_profit[i=1:24,line_profiles.line_id])
+    market = leftjoin(bids,zonal_limits,on=:zone)
+    @variable(model, upstream_flow[i=1:NUM_TIMESTEPS,line_profiles.line_id])
+    @variable(model, downstream_flow[i=1:NUM_TIMESTEPS,line_profiles.line_id])
+    @variable(model, upstream_profit[i=1:NUM_TIMESTEPS,line_profiles.line_id])
+    @variable(model, downstream_profit[i=1:NUM_TIMESTEPS,line_profiles.line_id])
     for line in eachrow(line_profiles)
-        JuMP.@constraint(model, upstream_profit[:,line.line_id] .>= zeros(24))
-        JuMP.@constraint(model, downstream_profit[:,line.line_id] .>= zeros(24))
-        JuMP.@constraint(model, upstream_flow[:,line.line_id] .>= zeros(24))
-        JuMP.@constraint(model, downstream_flow[:,line.line_id] .>= zeros(24))
-        JuMP.@constraint(model, upstream_flow[:,line.line_id] .<= line.upstream_profile)
-        JuMP.@constraint(model, downstream_flow[:,line.line_id] .<= line.downstream_profile)
+        @constraint(model, upstream_profit[:,line.line_id] .>= zeros(NUM_TIMESTEPS))
+        @constraint(model, downstream_profit[:,line.line_id] .>= zeros(NUM_TIMESTEPS))
+        @constraint(model, upstream_flow[:,line.line_id] .>= zeros(NUM_TIMESTEPS))
+        @constraint(model, downstream_flow[:,line.line_id] .>= zeros(NUM_TIMESTEPS))
+        @constraint(model, upstream_flow[:,line.line_id] .<= line.upstream_profile)
+        @constraint(model, downstream_flow[:,line.line_id] .<= line.downstream_profile)
     end
-    JuMP.@expression(model, flow[i=1:24,line=line_profiles.line_id], upstream_flow[i,line] .- downstream_flow[i,line])
+    @expression(model, flow[i=1:NUM_TIMESTEPS,line=line_profiles.line_id], upstream_flow[i,line] .- downstream_flow[i,line])
     
-    
-    # grid_balance_constraint = JuMP.@constraint(model,
-    #     grid_balance_constraint,
-    #     sum(market.x .* market.profile, dims=1)[1] .== zeros(24))
-    
-    xprt = Dict{String, Vector{JuMP.AffExpr}}()
+    xprt = Dict{String, Vector{AffExpr}}()
     for zl in eachrow(zonal_limits)
         zone = zl.zone  
-        xprt[zone] = Vector{JuMP.AffExpr}(undef, 24)  
+        xprt[zone] = Vector{AffExpr}(undef, NUM_TIMESTEPS)  
         for i in eachindex(xprt[zone])
-            xprt[zone][i] = JuMP.AffExpr(0.0)
+            xprt[zone][i] = AffExpr(0.0)
         end
         for line in eachrow(line_profiles)
             if line.line_from == zone
@@ -296,33 +388,32 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
     end
 
     for zl in eachrow(zonal_limits)
-        # println(zl.zone * "-" * string(isempty(market[market.zone.==zl.zone,:])))
         if !isempty(market[market.zone.==zl.zone,:])
-            JuMP.@constraint(model,
+            @constraint(model,
             sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .>= xprt[zl.zone])
-            JuMP.@constraint(model,
+            @constraint(model,
             sum(market[market.zone.==zl.zone,:].x .* market[market.zone.==zl.zone,:].profile, dims=1)[1] .<= xprt[zl.zone])
         else
-            JuMP.@constraint(model,
-            xprt[zl.zone] .== zeros(24))
+            @constraint(model,
+            xprt[zl.zone] .== zeros(NUM_TIMESTEPS))
         end
     end
-    JuMP.@constraint(model,
+    @constraint(model,
         [b in eachrow(market)],
         b.s >= sum(b.profile .* (b.p .- b.price))
     )
 
-    JuMP.@constraint(model,
+    @constraint(model,
         [l in eachrow(line_profiles)],
         p[:,l.line_to] .- p[:,l.line_from] .<= upstream_profit[:,l.line_id]
     )
 
-    JuMP.@constraint(model,
+    @constraint(model,
         [l in eachrow(line_profiles)],
         p[:,l.line_from] .- p[:,l.line_to] .<= downstream_profit[:,l.line_id]
     )
 
-    JuMP.@constraint(
+    @constraint(
         model,
         duality_constraint,
         sum(market.s)
@@ -331,31 +422,45 @@ function build_and_solve_market(bids::DataFrames.DataFrame,zonal_limits::DataFra
         == -sum(sum(market.x .* market.profile .* market.price))
     )
 
-    JuMP.@objective(model, Max, -sum(sum(market.x .* market.profile .* market.price)))
-    JuMP.optimize!(model)
-    @assert JuMP.is_solved_and_feasible(model)
-    println(JuMP.solution_summary(model))
-    for l in eachrow(line_profiles)
-        if l.line_id == "MALTSICI"
-            println(l.line_id * "- flow: " *string(JuMP.value.(flow[:,l.line_id]))* "- uflow: " *string(JuMP.value.(upstream_flow[:,l.line_id]))* "- dflow: " *string(JuMP.value.(downstream_flow[:,l.line_id])))
-            println(l.line_id * "- uflow: " *string(JuMP.value.(upstream_profit[:,l.line_id]))* "- dflow: " *string(JuMP.value.(downstream_profit[:,l.line_id])))
-        end
-    end
-    market.zp = [Array(JuMP.value.(m.p)) for m in eachrow(market)]
-    #market.mcp_unc = [Array(JuMP.value.(MCP_UNC[1:24])) for m in eachrow(market)]
-    market.x = [JuMP.value(m.x) for m in eachrow(market)]
-    market.s = [JuMP.value(m.s) for m in eachrow(market)]
-    zonal_limits.zp = [Array(JuMP.value.(zl.p)) for zl in eachrow(zonal_limits)]
-    return (zonal_limits[:,[:zone,:zp]],market[:, [:zone,:profile,:price,:x,:s,:zp]],model)
-    #return (market[:, [:zone,:profile,:x,:p]],model)
+    @objective(model, Max, -sum(sum(market.x .* market.profile .* market.price))
+        - 1e-7*(sum([sum(upstream_flow[:, line.line_id]) for line in eachrow(line_profiles)])
+        + sum([sum(downstream_flow[:, line.line_id]) for line in eachrow(line_profiles)]))) # added penalty term to discourage abusing cycles TODO: add a post-solve model to simplify flows without this
+    optimize!(model)
+    @assert is_solved_and_feasible(model)
+    market.accepted_quantity = [value(m.x).*m.profile for m in eachrow(market)]
+    market.s = [value(m.s) for m in eachrow(market)]
+    zonal_limits.zonal_price = [Array(value.(zl.p)) for zl in eachrow(zonal_limits)]
+    zonal_limits.generation = [sum(
+        reduce(
+            hcat,
+            [max.(aq, 0.0) for aq in market[market.zone .== zl.zone, :].accepted_quantity];
+            init = zeros(24, 1)
+        )',
+        dims=1
+    ) for zl in eachrow(zonal_limits)]
+    zonal_limits.consumption = [sum(
+        reduce(
+            hcat, 
+            [min.(aq, 0.0) for aq in market[market.zone .== zl.zone, :].accepted_quantity];
+            init = zeros(24, 1)
+        )',
+        dims=1
+    ) for zl in eachrow(zonal_limits)]
+
+    line_profiles.flow = [Array(value.(flow[:,l.line_id])) for l in eachrow(line_profiles)]
+
+
+    return (market[:, [:id, :zone, :accepted_quantity]],
+            zonal_limits[:, [:zone, :zonal_price, :consumption, :generation]],
+            line_profiles[:,[:line_from, :line_to, :flow]])
     
 end
 
-function recover_transfers(market_results::DataFrames.DataFrame)::DataFrames.DataFrame
+function recover_transfers(market_results::DataFrame)::DataFrame
 end
 
 # File output
-function publish_results(market_results::DataFrames.DataFrame, transfers::DataFrames.DataFrame, filepath::String)
+function publish_results(market_results::DataFrame, transfers::DataFrame, filepath::String)
 end
 
 export load_lines

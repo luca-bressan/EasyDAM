@@ -1,0 +1,58 @@
+$schema: "http://json-schema.org/draft-07/schema#"
+title: "Market Results Schema"
+type: "object"
+properties:
+  zonal_results:
+    type: "array"
+    description: "Array of market results per zone"
+    items:
+      type: "object"
+      properties:
+        zone:
+          type: "string"
+          description: "Zone for which the market result is reported"
+          $ref: "zones.yaml#/zones"  # Reference to external zone enum
+        clearing_price:
+          type: "number"
+          description: "Clearing price for the zone"
+          minimum: -9999
+          maximum: 9999
+        consumption:
+          type: "number"
+          description: "Consumption value for the zone"
+          minimum: 0
+        generation:
+          type: "number"
+          description: "Generation value for the zone"
+          minimum: 0
+      required:
+        - zone
+        - clearing_price
+        - consumption_value
+        - generation_value
+
+  scheduled_exchanges:
+    type: "array"
+    description: "Array of market lines with scheduled exchange"
+    items:
+      type: "object"
+      properties:
+        source:
+          type: "string"
+          description: "Source zone for the line"
+          $ref: "zones.yaml#/zones"  # Reference to external zone enum
+        destination:
+          type: "string"
+          description: "Destination zone for the line"
+          $ref: "zones.yaml#/zones"  # Reference to external zone enum
+        scheduled_exchange:
+          type: "number"
+          description: "Scheduled exchange for the line"
+      required:
+        - source
+        - destination
+        - scheduled_exchange
+
+required:
+  - zonal_results
+  - scheduled_exchanges
