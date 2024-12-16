@@ -358,6 +358,9 @@ function execute(bids::DataFrame,zonal_limits::DataFrame,line_profiles::DataFram
     model = Model(HiGHS.Optimizer)
     @variable(model, x[bids.id] >= 0.0)
     for bid in eachrow(bids)
+        if bid.MAR != 0.0
+            @warn "A MAR different than zero has been specified, but this is not yet supported. Executing market as if MAR was zero for bid "*str(bid.id)
+        end
         @constraint(model, x[bid.id] <= 1.0) #TODO: add MAR usage
     end
     @variable(model, s[bids.id] >= 0.0)
