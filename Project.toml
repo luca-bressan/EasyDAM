@@ -5,14 +5,18 @@ version = "0.1.0"
 
 [deps]
 DataFrames = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
+GLMakie = "e9467ef8-e4e7-5192-8a1a-b1aee30e663a"
 HiGHS = "87dc4568-4c63-4d18-b0c0-bb2238e4078b"
 JuMP = "4076af6c-e467-56ae-b986-b466b2749572"
+Logging = "56ddb016-857b-54e1-b83d-db4d58db5568"
 StructTypes = "856f2bd8-1eba-4b0a-8007-ebc267875bd4"
 YAML = "ddb6d928-2868-570f-bddf-ab3f9cf99eb6"
 
 [compat]
 DataFrames = "1.7.0"
+GLMakie = "0.10.18"
 HiGHS = "1.12.0"
 JuMP = "1.23.4"
+Logging = "1.11.0"
 StructTypes = "1.11.0"
 YAML = "0.4.12"

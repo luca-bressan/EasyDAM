@@ -4,9 +4,13 @@ using StructTypes
 using DataFrames
 using JuMP
 using HiGHS
+using GLMakie
+using Logging
 
 # Global config
 global const NUM_TIMESTEPS::UInt64 = 24
+logger = ConsoleLogger(stdout, Logging.Info)
+global_logger(logger)
 
 # Type declarations
 struct Line
@@ -53,6 +57,12 @@ struct SimpleBid <: Bid
 end
 StructType(::Type{SimpleBid}) = Struct()
 
+struct MarketResult
+    offers::DataFrame
+    zonal_results::DataFrame
+    line_results::DataFrame
+end
+
 # Exception declarations
 struct DuplicateLineError <: Exception
     msg::String
@@ -61,6 +71,9 @@ struct DuplicateBidError <: Exception
     msg::String
 end
 struct BadFileError <: Exception
+    msg::String
+end
+struct NotYetImplementedError <: Exception
     msg::String
 end
 
@@ -341,7 +354,7 @@ function get_line_profiles(lines::Vector{Line}, zones::Vector{String})::DataFram
 end
 
 # Home of the magical gnomes
-function build_and_solve_market(bids::DataFrame,zonal_limits::DataFrame,line_profiles::DataFrame)::Tuple{DataFrame,DataFrame,DataFrame}
+function execute(bids::DataFrame,zonal_limits::DataFrame,line_profiles::DataFrame)::MarketResult
     model = Model(HiGHS.Optimizer)
     @variable(model, x[bids.id] >= 0.0)
     for bid in eachrow(bids)
@@ -450,23 +463,136 @@ function build_and_solve_market(bids::DataFrame,zonal_limits::DataFrame,line_pro
     line_profiles.flow = [Array(value.(flow[:,l.line_id])) for l in eachrow(line_profiles)]
 
 
-    return (market[:, [:id, :zone, :accepted_quantity]],
+    return MarketResult(market[:, [:id, :zone, :accepted_quantity]],
             zonal_limits[:, [:zone, :zonal_price, :consumption, :generation]],
             line_profiles[:,[:line_from, :line_to, :flow]])
     
 end
 
-function recover_transfers(market_results::DataFrame)::DataFrame
+function filter_zonal_results(zonal_results, zone)
+    filtered_zonal_results = zonal_results[zonal_results.zone .== zone, :]
+    (LinRange(1,NUM_TIMESTEPS,NUM_TIMESTEPS),filtered_zonal_results.zonal_price[1,1])
+end
+
+function filter_flows(line_results, line_option)
+    filtered_line_results = line_results[line_results.line_option .== line_option, :]
+    (LinRange(1,NUM_TIMESTEPS,NUM_TIMESTEPS),filtered_line_results.flow[1,1])
+end
+
+function reshape_zonal_results(zonal_results, zone)
+    filtered_zonal_results = zonal_results[zonal_results.zone .== zone, :]
+    periods = Vector{UInt64}()
+    directions = Vector{UInt64}()
+    volumes =  Vector{Float64}()
+    for i in 1:NUM_TIMESTEPS
+        volume = -filtered_zonal_results.consumption[1,1][i]
+        push!(volumes,volume)
+        push!(periods,i)
+        push!(directions,1)
+        volume = filtered_zonal_results.generation[1,1][i]
+        push!(volumes,volume)
+        push!(periods,i)
+        push!(directions,2)
+    end
+    reshaped_zonal_results = DataFrame(period=periods, direction=directions, volume=volumes)
+    return reshaped_zonal_results
+end
+
+# Plot results
+function plot(market_result::MarketResult)
+    # Initialize figure
+    fig = Figure()
+
+    # Unpack market results
+    zonal_results = market_result.zonal_results
+    line_results = market_result.line_results
+    line_results.line_option = ["From "*l.line_from*" to "*l.line_to for l in eachrow(line_results)]
+    reshaped_zonal_results = reshape_zonal_results(zonal_results,unique(zonal_results.zone)[1])    
+
+
+    # Define a Menu with options from unique categories
+    zones_menu = Menu(fig, options = unique(zonal_results.zone), default = unique(zonal_results.zone)[1], width = 200)
+    fig[1, 1] = vgrid!(
+    Label(fig, "Zone", width = nothing),
+    zones_menu;
+    tellheight = false, width = 200)
+    line_options_menu = Menu(fig, options = unique(line_results.line_option), default = unique(line_results.line_option)[1], width = 200)
+    fig[3, 1] = vgrid!(
+    Label(fig, "Line", width = nothing),
+    line_options_menu;
+    tellheight = false, width = 200)
+
+    prices_axis = Axis(fig[1, 2], yaxisposition = :right)
+    volumes_axis = Axis(fig[2, 2], yaxisposition = :right)
+    flows_axis = Axis(fig[3, 2], yaxisposition = :right)
+
+    zone = Observable{Any}(unique(zonal_results.zone)[1])
+    line = Observable{Any}(unique(line_results.option)[1])
+    volumes_periods_obs = Observable{Any}(reshaped_zonal_results.period)
+    prices_periods_obs = Observable{Any}(LinRange(1,24,24))
+    flows_periods_obs = Observable{Any}(LinRange(1,24,24))
+    volumes_obs = Observable{Any}(reshaped_zonal_results.volume)
+    directions_obs = Observable{Any}(reshaped_zonal_results.direction)
+    prices_obs = Observable{Any}(zonal_results.zonal_price[1,1])
+    flows_obs = Observable{Any}(line_results.flow[1,1])    
+
+    prices_plot = scatterlines!(prices_axis, prices_periods_obs, prices_obs)
+    axislegend(prices_axis,[prices_plot],["Zonal price"])
+
+    volumes_plot = barplot!(volumes_axis,volumes_periods_obs,volumes_obs,dodge = directions_obs, color = directions_obs)
+    consumption_marker = MarkerElement(color = :purple, marker = :circle, markersize = 15)
+    generation_marker = MarkerElement(color = :yellow, marker = :circle, markersize = 15)
+    axislegend(volumes_axis,[consumption_marker, generation_marker],["Consumption","Generation"])
+
+    flows_plot = scatterlines!(flows_axis, flows_periods_obs, flows_obs)
+    axislegend(flows_axis,[flows_plot],["Flow"])
+
+    on(zones_menu.selection) do zone
+        if isnothing(zone)  # Ensure no null selection
+            return
+        end
+        prices_periods_obs[], prices_obs[] = filter_zonal_results(zonal_results, zone)
+        
+        reshaped_zonal_results = reshape_zonal_results(zonal_results,zone)
+        volumes_periods_obs[] = reshaped_zonal_results.period
+        volumes_obs[] = reshaped_zonal_results.volume
+        directions_obs[] = reshaped_zonal_results.direction
+
+        notify(prices_obs)
+        notify(prices_periods_obs)
+        notify(volumes_periods_obs)        
+        notify(volumes_obs)
+        notify(directions_obs)
+        reset_limits!(prices_axis; xauto = true, yauto = true)
+        reset_limits!(volumes_axis; xauto = true, yauto = true)
+    end
+
+    on(line_options_menu.selection) do line_option
+        if isnothing(line_option)  # Ensure no null selection
+            return
+        end
+        flows_periods_obs[], flows_obs[] = filter_flows(line_results, line_option)
+        notify(flows_periods_obs)        
+        notify(flows_obs)
+        reset_limits!(flows_axis; xauto = true, yauto = true)
+    end
+    DataInspector(fig)
+    fig
 end
 
 # File output
-function publish_results(market_results::DataFrame, transfers::DataFrame, filepath::String)
+function publish_results(market_results::DataFrame, line_profiles::DataFrame, filepath::String)
+    throw(NotYetImplementedError("Functionality not yet implemented."))
 end
 
 export load_lines
 export load_bids
-export Line
+export get_line_profiles
+export get_zonal_limits
+export execute
+
 export BadFileError
 export DuplicateLineError
+export NotYetImplementedError
 
 end # module EasyDAM
